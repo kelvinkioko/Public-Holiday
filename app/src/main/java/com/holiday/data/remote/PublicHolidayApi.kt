@@ -5,6 +5,7 @@ import com.holiday.data.remote.dto.CountryInfoDto
 import com.holiday.data.remote.dto.HolidaysDto
 import com.holiday.data.remote.dto.LongWeekendDto
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface PublicHolidayApi {
 
@@ -12,24 +13,36 @@ interface PublicHolidayApi {
     @GET("AvailableCountries")
     suspend fun getAvailableCountries(): List<CountryDto>
 
-    @GET("CountryInfo/")
-    suspend fun getCountryInfo(): CountryInfoDto
+    @GET("CountryInfo/{countryCode}")
+    suspend fun getCountryInfo(
+        @Path("countryCode") countryCode: String
+    ): CountryInfoDto
     // endregion
 
     // region: Long holiday
-    @GET("LongWeekend/")
-    suspend fun getLongWeekendByYearCountryCode(): List<LongWeekendDto>
+    @GET("LongWeekend/{year}/{countryCode}")
+    suspend fun getLongWeekendByYearCountryCode(
+        @Path("year") year: Int,
+        @Path("countryCode") countryCode: String
+    ): List<LongWeekendDto>
     // endregion
 
     // region: Public holiday
-    @GET("PublicHolidays/")
-    suspend fun getPublicHolidaysByYearCountryCode(): List<HolidaysDto>
+    @GET("PublicHolidays/{year}/{countryCode}")
+    suspend fun getPublicHolidaysByYearCountryCode(
+        @Path("year") year: Int,
+        @Path("countryCode") countryCode: String
+    ): List<HolidaysDto>
 
-    @GET("IsTodayPublicHoliday/")
-    suspend fun getIsTodayPublicHolidayCountryCode(): HolidaysDto
+    @GET("IsTodayPublicHoliday//{countryCode}")
+    suspend fun getIsTodayPublicHolidayCountryCode(
+        @Path("countryCode") countryCode: String
+    ): HolidaysDto
 
-    @GET("NextPublicHolidays/")
-    suspend fun getNextPublicHolidayCountryCode(): List<HolidaysDto>
+    @GET("NextPublicHolidays//{countryCode}")
+    suspend fun getNextPublicHolidayCountryCode(
+        @Path("countryCode") countryCode: String
+    ): List<HolidaysDto>
 
     @GET("NextPublicHolidaysWorldwide/")
     suspend fun getNextPublicHolidayWorldwide(): List<HolidaysDto>
