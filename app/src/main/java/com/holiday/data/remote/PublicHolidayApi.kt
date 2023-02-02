@@ -22,7 +22,7 @@ interface PublicHolidayApi {
     // region: Long holiday
     @GET("LongWeekend/{year}/{countryCode}")
     suspend fun getLongWeekendByYearCountryCode(
-        @Path("year") year: String,
+        @Path("year") year: Int,
         @Path("countryCode") countryCode: String
     ): List<LongWeekendDto>
     // endregion
@@ -30,7 +30,7 @@ interface PublicHolidayApi {
     // region: Public holiday
     @GET("PublicHolidays/{year}/{countryCode}")
     suspend fun getPublicHolidaysByYearCountryCode(
-        @Path("year") year: String,
+        @Path("year") year: Int,
         @Path("countryCode") countryCode: String
     ): List<HolidaysDto>
 

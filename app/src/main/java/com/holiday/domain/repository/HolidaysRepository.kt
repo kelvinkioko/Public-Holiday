@@ -10,9 +10,9 @@ interface HolidaysRepository {
     suspend fun checkIfTodayIsPublicHoliday(countryCode: String):
         Response<List<HolidaysModel>>
 
-    suspend fun fetchNextPublicHolidays(year: Int, countryCode: String):
+    suspend fun fetchNextPublicHolidays(countryCode: String):
         Response<List<HolidaysModel>>
 
-    suspend fun fetchNextPublicHolidaysWorldWide(year: Int, countryCode: String):
+    suspend fun fetchNextPublicHolidaysWorldWide(countryCode: String):
         Response<List<HolidaysModel>>
 }
