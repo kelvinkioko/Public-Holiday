@@ -7,38 +7,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/homeHeader"
-        style="@style/HeadlineTextAppearance"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Public Holiday"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"/>
+        app:navigationIcon="@drawable/ic_close">
 
-    <include
-        android:id="@+id/selectCountry"
-        layout="@layout/item_option"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/selectYear"
-        app:layout_constraintTop_toBottomOf="@+id/homeHeader"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart" />
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TitleTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Countries"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
 
-    <include
-        android:id="@+id/selectYear"
-        layout="@layout/item_option"
-        android:layout_width="wrap_content"
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchCountryInput"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:letterSpacing="0.07"
+        app:hintTextAppearance="?attr/textAppearanceCaption"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@+id/homeHeader"
-        app:layout_constraintStart_toEndOf="@id/selectCountry" />
+        app:layout_constraintStart_toStartOf="@id/guidelineStart" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:letterSpacing="0.07"
+            android:singleLine="true"
+            android:padding="12dp"
+            android:hint="Search country..."
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:drawableEnd="@drawable/ic_search" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allocationList"
@@ -50,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeHeader"
+        app:layout_constraintTop_toBottomOf="@id/searchCountryInput"
         tools:itemCount="4"
         tools:listitem="@layout/item_country" />
 
