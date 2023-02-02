@@ -23,9 +23,10 @@
     <include
         android:id="@+id/selectCountry"
         layout="@layout/item_option"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@id/selectYear"
         app:layout_constraintTop_toBottomOf="@+id/homeHeader"
         app:layout_constraintStart_toStartOf="@id/guidelineStart" />
@@ -33,12 +34,26 @@
     <include
         android:id="@+id/selectYear"
         layout="@layout/item_option"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintTop_toBottomOf="@+id/homeHeader"
         app:layout_constraintStart_toEndOf="@id/selectCountry" />
+
+    <TextView
+        android:id="@+id/holidaysHeader"
+        style="@style/MainTextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Available holidays"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintTop_toBottomOf="@id/selectCountry"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allocationList"
@@ -50,9 +65,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeHeader"
+        app:layout_constraintTop_toBottomOf="@id/holidaysHeader"
         tools:itemCount="4"
-        tools:listitem="@layout/item_country" />
+        tools:listitem="@layout/item_holiday" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loader"

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp" >
@@ -18,9 +18,8 @@
         <TextView
             android:id="@+id/optionTitle"
             style="@style/MainTextAppearance"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:includeFontPadding="false"
             android:paddingHorizontal="12dp"
             android:paddingVertical="4dp"
@@ -30,7 +29,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Year" />
+            android:text="Year" />
 
         <ImageView
             android:id="@+id/optionDropDown"
@@ -46,7 +45,7 @@
         <TextView
             android:id="@+id/selectedOption"
             style="@style/SubItemTextAppearance"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:includeFontPadding="false"
@@ -57,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/optionTitle"
-            tools:text="Select year" />
+            android:text="Select year" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
