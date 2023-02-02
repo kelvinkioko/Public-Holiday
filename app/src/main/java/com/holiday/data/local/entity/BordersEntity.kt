@@ -5,8 +5,8 @@ import androidx.room.Entity
 
 @Entity(tableName = "borders")
 data class BordersEntity(
-    @ColumnInfo(name = "commonName") val commonName: String,
-    @ColumnInfo(name = "officialName") val officialName: String,
-    @ColumnInfo(name = "countryCode") val countryCode: String,
-    @ColumnInfo(name = "region") val region: String
+    @ColumnInfo(name = "commonName") val commonName: String = "",
+    @ColumnInfo(name = "officialName") val officialName: String = "",
+    @ColumnInfo(name = "countryCode") val countryCode: String = "",
+    @ColumnInfo(name = "region") val region: String = ""
 )

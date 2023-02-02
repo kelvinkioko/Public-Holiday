@@ -5,13 +5,13 @@ import androidx.room.Entity
 
 @Entity(tableName = "holidays", primaryKeys = ["countryCode"])
 data class HolidaysEntity(
-    @ColumnInfo(name = "date") val date: String,
-    @ColumnInfo(name = "localName") val localName: String,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "countryCode") val countryCode: String,
+    @ColumnInfo(name = "date") val date: String = "",
+    @ColumnInfo(name = "localName") val localName: String = "",
+    @ColumnInfo(name = "name") val name: String = "",
+    @ColumnInfo(name = "countryCode") val countryCode: String = "",
     @ColumnInfo(name = "fixed") val fixed: Boolean,
     @ColumnInfo(name = "global") val global: Boolean,
-    @ColumnInfo(name = "counties") val counties: List<String>,
+    @ColumnInfo(name = "counties") val counties: List<String> = emptyList(),
     @ColumnInfo(name = "launchYear") val launchYear: Int,
-    @ColumnInfo(name = "types") val types: List<String>
+    @ColumnInfo(name = "types") val types: List<String> = emptyList()
 )
