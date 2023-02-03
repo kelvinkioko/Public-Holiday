@@ -1,0 +1,211 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "3a9ac177d94135514e92f557d24d8d84",
+    "entities": [
+      {
+        "tableName": "country",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`commonName` TEXT NOT NULL, `officialName` TEXT NOT NULL, `countryCode` TEXT NOT NULL, `region` TEXT NOT NULL, PRIMARY KEY(`countryCode`))",
+        "fields": [
+          {
+            "fieldPath": "commonName",
+            "columnName": "commonName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialName",
+            "columnName": "officialName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "countryCode"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "borders",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`referenceCountryCode` TEXT NOT NULL, `commonName` TEXT NOT NULL, `officialName` TEXT NOT NULL, `countryCode` TEXT NOT NULL, `region` TEXT NOT NULL, PRIMARY KEY(`referenceCountryCode`, `countryCode`))",
+        "fields": [
+          {
+            "fieldPath": "referenceCountryCode",
+            "columnName": "referenceCountryCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commonName",
+            "columnName": "commonName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialName",
+            "columnName": "officialName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "referenceCountryCode",
+            "countryCode"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "holidays",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`year` TEXT NOT NULL, `date` TEXT NOT NULL, `localName` TEXT NOT NULL, `name` TEXT NOT NULL, `countryCode` TEXT NOT NULL, `fixed` INTEGER NOT NULL, `global` INTEGER NOT NULL, `counties` TEXT NOT NULL, `launchYear` INTEGER NOT NULL, `types` TEXT NOT NULL, PRIMARY KEY(`countryCode`, `date`))",
+        "fields": [
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localName",
+            "columnName": "localName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fixed",
+            "columnName": "fixed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "global",
+            "columnName": "global",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "counties",
+            "columnName": "counties",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "launchYear",
+            "columnName": "launchYear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "types",
+            "columnName": "types",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "countryCode",
+            "date"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "long_weekend",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`startDate` TEXT NOT NULL, `endDate` TEXT NOT NULL, `dayCount` TEXT NOT NULL, `needBridgeDay` TEXT NOT NULL, PRIMARY KEY(`startDate`, `endDate`))",
+        "fields": [
+          {
+            "fieldPath": "startDate",
+            "columnName": "startDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endDate",
+            "columnName": "endDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayCount",
+            "columnName": "dayCount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "needBridgeDay",
+            "columnName": "needBridgeDay",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "startDate",
+            "endDate"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3a9ac177d94135514e92f557d24d8d84')"
+    ]
+  }
+}

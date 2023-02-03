@@ -3,7 +3,7 @@ package com.holiday.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 
-@Entity(tableName = "borders")
+@Entity(tableName = "borders", primaryKeys = ["referenceCountryCode", "countryCode"])
 data class BordersEntity(
     @ColumnInfo(name = "referenceCountryCode") var referenceCountryCode: String = "",
     @ColumnInfo(name = "commonName") var commonName: String = "",

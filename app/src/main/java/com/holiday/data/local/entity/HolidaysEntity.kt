@@ -3,8 +3,9 @@ package com.holiday.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 
-@Entity(tableName = "holidays", primaryKeys = ["countryCode"])
+@Entity(tableName = "holidays", primaryKeys = ["countryCode", "date"])
 data class HolidaysEntity(
+    @ColumnInfo(name = "year") val year: String = "",
     @ColumnInfo(name = "date") val date: String = "",
     @ColumnInfo(name = "localName") val localName: String = "",
     @ColumnInfo(name = "name") val name: String = "",

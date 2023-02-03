@@ -1,14 +1,19 @@
 package com.holiday
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.holiday.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
             setBottomNavController()
         }
+
+        viewModel.loadCountries()
     }
 
     private fun setBottomNavController() {

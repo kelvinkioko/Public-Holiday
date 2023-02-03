@@ -12,7 +12,7 @@ interface HolidaysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHolidaysEntity(holidaysEntity: HolidaysEntity)
 
-    @Query("SELECT * FROM holidays WHERE year =:year && countryCode =:countryCode")
+    @Query("SELECT * FROM holidays WHERE year =:year AND countryCode =:countryCode")
     suspend fun loadHolidaysByYearAndCountryCode(
         year: Int,
         countryCode: String
@@ -21,7 +21,7 @@ interface HolidaysDao {
     @Query("SELECT * FROM holidays WHERE countryCode =:countryCode")
     suspend fun loadHolidaysByCountryCode(countryCode: String): List<HolidaysEntity>
 
-    @Query("SELECT COUNT(name) FROM holidays WHERE year =:year && countryCode =:countryCode")
+    @Query("SELECT COUNT(name) FROM holidays WHERE year =:year AND countryCode =:countryCode")
     suspend fun countHolidaysByYearAndCountryCode(year: Int, countryCode: String): Int
 
     @Query("SELECT COUNT(name) FROM holidays WHERE countryCode =:countryCode")
