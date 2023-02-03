@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/worldHolidayFragment">
+
+    <fragment
+        android:id="@+id/worldHolidayFragment"
+        android:name="com.holiday.presentation.world.WorldHolidayFragment"
+        android:label="World holiday fragment"
+        tools:layout="@layout/fragment_world_holiday" />
+
+    <fragment
+        android:id="@+id/countryHolidayFragment"
+        android:name="com.holiday.presentation.country.CountryHolidayFragment"
+        android:label="Country holiday fragment"
+        tools:layout="@layout/fragment_country_holiday" />
+
+</navigation>
