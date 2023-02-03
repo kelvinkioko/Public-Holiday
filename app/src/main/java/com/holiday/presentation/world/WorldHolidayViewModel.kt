@@ -1,4 +1,4 @@
-package com.holiday
+package com.holiday.presentation.world
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class WorldHolidayViewModel @Inject constructor(
     private val countryRepository: CountryRepository
 ) : ViewModel() {
 
@@ -19,6 +19,8 @@ class MainViewModel @Inject constructor(
             val countries = withContext(Dispatchers.IO) {
                 countryRepository.fetchAllCountries()
             }
+
+            println("@@@ ${countries.responseData}")
         }
     }
 }
