@@ -23,7 +23,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             application,
             HolidayDatabase::class.java,
-            "publicHolidays"
+            "publicHolidays.db"
         ).build()
     }
 
