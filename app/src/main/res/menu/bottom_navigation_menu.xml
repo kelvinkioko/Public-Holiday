@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/worldHolidayFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_world"
+        android:title="World wide"/>
+    <item
+        android:id="@+id/countryHolidayFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_country"
+        android:title="Country"/>
+</menu>
