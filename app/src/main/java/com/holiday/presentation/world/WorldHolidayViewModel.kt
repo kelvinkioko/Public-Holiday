@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.domain.repository.HolidaysRepository
-import com.holiday.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,20 +23,19 @@ class WorldHolidayViewModel @Inject constructor(
     fun loadWorldHolidays() {
         viewModelScope.launch {
             val holidays = withContext(Dispatchers.IO) {
-                holidaysRepository.fetchNextPublicHolidaysWorldWide(countryCode = "US")
+                holidaysRepository.fetchNextPublicHolidaysWorldWide()
             }
 
-            println("@@@ holidays -> ${holidays.errorMessage}")
+            println("@@@ holidays resp -> ${holidays.responseData}")
 
-            when (holidays) {
-                is Response.Success ->
-                    _uiState.value = WorldHolidayUIState.Holidays(
-                        holidays = holidays.responseData ?: emptyList()
-                    )
-                is Response.Error ->
-                    _uiState.value = WorldHolidayUIState.Error(
-                        message = holidays.errorMessage ?: ""
-                    )
+            if (holidays.responseData != null) {
+                _uiState.value = WorldHolidayUIState.Holidays(
+                    holidays = holidays.responseData
+                )
+            } else {
+                _uiState.value = WorldHolidayUIState.Error(
+                    message = holidays.errorMessage ?: ""
+                )
             }
         }
     }

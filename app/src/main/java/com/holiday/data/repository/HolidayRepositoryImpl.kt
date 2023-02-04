@@ -32,7 +32,7 @@ class HolidayRepositoryImpl @Inject constructor(
                     countryCode = countryCode
                 )
 
-                insertHolidayToDB(holidaysDto = holidaysDto)
+                insertHolidayToDB(year = year, holidaysDto = holidaysDto)
             } catch (httpException: HttpException) {
                 return Response.Error(errorMessage = "Could not load countries")
             }
@@ -42,71 +42,40 @@ class HolidayRepositoryImpl @Inject constructor(
         return Response.Success(responseData = holidaysModel)
     }
 
-    override suspend fun checkIfTodayIsPublicHoliday(
-        countryCode: String
-    ): Response<List<HolidaysModel>> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun fetchNextPublicHolidays(countryCode: String):
+    override suspend fun fetchNextPublicHolidaysWorldWide():
         Response<List<HolidaysModel>> {
-        val numberOfHolidays = holidaysDao.countHolidaysByCountryCode(
-            countryCode = countryCode
-        )
-        if (numberOfHolidays == 0) {
-            try {
-                val holidaysDto = holidayApi.getNextPublicHolidayCountryCode(
-                    countryCode = countryCode
-                )
-
-                insertHolidayToDB(holidaysDto = holidaysDto)
-            } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load public holidays")
-            }
-        }
-
-        val holidaysModel = loadHolidaysFromDB(countryCode = countryCode)
-        return Response.Success(responseData = holidaysModel)
-    }
-
-    override suspend fun fetchNextPublicHolidaysWorldWide(countryCode: String):
-        Response<List<HolidaysModel>> {
-        val numberOfHolidays = holidaysDao.countHolidaysByCountryCode(
-            countryCode = countryCode
-        )
+        val numberOfHolidays = holidaysDao.countWorldWideHolidays()
         if (numberOfHolidays == 0) {
             try {
                 val holidaysDto = holidayApi.getNextPublicHolidayWorldwide()
 
-                insertHolidayToDB(holidaysDto = holidaysDto)
+                insertHolidayToDB(holidaysDto = holidaysDto, worldWide = true)
             } catch (httpException: HttpException) {
                 return Response.Error(errorMessage = "Could not load public holidays")
             }
         }
 
-        val holidaysModel = loadHolidaysFromDB()
+        val holidaysModel = loadHolidaysFromDB(worldWide = true)
         return Response.Success(responseData = holidaysModel)
     }
 
     private suspend fun loadHolidaysFromDB(
         year: Int? = null,
-        countryCode: String? = null
+        countryCode: String? = null,
+        worldWide: Boolean = false
     ): List<HolidaysModel> {
-        val holidays = if (year == null && countryCode == null) {
+        val holidays = if (worldWide) {
             holidaysDao.loadWorldWideHolidays()
-        } else if (year == null) {
-            holidaysDao.loadHolidaysByCountryCode(
-                countryCode = countryCode ?: ""
-            )
         } else {
             holidaysDao.loadHolidaysByYearAndCountryCode(
-                year = year,
+                year = year ?: 0,
                 countryCode = countryCode ?: ""
             )
         }
 
         val holidaysModel = mutableListOf<HolidaysModel>()
         holidays.map { holidayEntity ->
+            println("@@@ holiday entity $holidayEntity")
             val holidayModel = holidayEntity.mapToHolidaysModel()
             holidaysModel.add(holidayModel)
         }
@@ -114,9 +83,16 @@ class HolidayRepositoryImpl @Inject constructor(
         return holidaysModel
     }
 
-    private suspend fun insertHolidayToDB(holidaysDto: List<HolidaysDto>) {
+    private suspend fun insertHolidayToDB(
+        year: Int = 0,
+        holidaysDto: List<HolidaysDto>,
+        worldWide: Boolean = false
+    ) {
         holidaysDto.map { holidayDto ->
-            val holidayEntity = holidayDto.mapToHolidaysEntity()
+            val holidayEntity = holidayDto.mapToHolidaysEntity(
+                holidayYear = year,
+                worldWide = worldWide
+            )
             holidaysDao.insertHolidaysEntity(holidaysEntity = holidayEntity)
         }
     }

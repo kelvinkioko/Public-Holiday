@@ -5,7 +5,7 @@ import androidx.room.Entity
 
 @Entity(tableName = "holidays", primaryKeys = ["countryCode", "date"])
 data class HolidaysEntity(
-    @ColumnInfo(name = "year") val year: String = "",
+    @ColumnInfo(name = "holidayYear") val holidayYear: Int = 0,
     @ColumnInfo(name = "date") val date: String = "",
     @ColumnInfo(name = "localName") val localName: String = "",
     @ColumnInfo(name = "name") val name: String = "",
