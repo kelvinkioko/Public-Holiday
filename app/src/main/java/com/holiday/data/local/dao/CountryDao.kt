@@ -12,7 +12,7 @@ interface CountryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCountry(countryEntity: CountryEntity)
 
-    @Query("SELECT * FROM country")
+    @Query("SELECT * FROM country ORDER BY commonName ASC")
     suspend fun loadCountries(): List<CountryEntity>
 
     @Query(" SELECT * FROM country WHERE countryCode = :countryCode")
