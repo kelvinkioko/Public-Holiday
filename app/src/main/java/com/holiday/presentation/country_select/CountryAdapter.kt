@@ -37,9 +37,9 @@ class CountryAdapter(
             binding.apply {
                 countryName.text = country.commonName
                 countryCode.text = country.countryCode
+                countryCheck.isChecked = country.countryCode == selectedCountryCode
 
                 if (country.countryCode == selectedCountryCode) {
-                    countryCheck.isChecked = true
                     selectedCountryPosition = position
                 }
 
