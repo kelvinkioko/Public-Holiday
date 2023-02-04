@@ -25,6 +25,8 @@ class CountryHolidayViewModel @Inject constructor(
     private val _uiState = MutableLiveData<CountryHolidayUIState>()
     val uiState: LiveData<CountryHolidayUIState> = _uiState
 
+    private val holidays = mutableListOf<HolidaysModel>()
+
     init {
         loadCountryModel()
     }
@@ -52,18 +54,31 @@ class CountryHolidayViewModel @Inject constructor(
     fun loadHolidays(year: Int, countryCode: String) {
         viewModelScope.launch {
             _uiState.value = CountryHolidayUIState.Loading(isLoading = true)
-            val holidays = withContext(Dispatchers.IO) {
+            val holidaysResponse = withContext(Dispatchers.IO) {
                 holidaysRepository.fetchAllPublicHolidays(year = year, countryCode = countryCode)
             }
 
             _uiState.value = CountryHolidayUIState.Loading(isLoading = false)
 
-            _uiState.value = if (holidays.responseData != null) {
-                CountryHolidayUIState.Holidays(holidays = holidays.responseData)
+            _uiState.value = if (holidaysResponse.responseData != null) {
+                holidays.clear()
+                holidays.addAll(holidaysResponse.responseData)
+                CountryHolidayUIState.Holidays(holidays = holidays)
             } else {
-                CountryHolidayUIState.Error(message = holidays.errorMessage ?: "")
+                CountryHolidayUIState.Error(message = holidaysResponse.errorMessage ?: "")
             }
         }
+    }
+
+    fun filterHolidays(searchQuery: String) {
+        val filteredHolidays = holidays.filter {
+            it.name.contains(searchQuery, ignoreCase = true) ||
+                it.localName.contains(searchQuery, ignoreCase = true)
+        }
+
+        _uiState.value = CountryHolidayUIState.Holidays(
+            holidays = filteredHolidays
+        )
     }
 }
 
