@@ -58,14 +58,10 @@ class CountryHolidayViewModel @Inject constructor(
 
             _uiState.value = CountryHolidayUIState.Loading(isLoading = false)
 
-            if (holidays.responseData != null) {
-                _uiState.value = CountryHolidayUIState.Holidays(
-                    holidays = holidays.responseData
-                )
+            _uiState.value = if (holidays.responseData != null) {
+                CountryHolidayUIState.Holidays(holidays = holidays.responseData)
             } else {
-                _uiState.value = CountryHolidayUIState.Error(
-                    message = holidays.errorMessage ?: ""
-                )
+                CountryHolidayUIState.Error(message = holidays.errorMessage ?: "")
             }
         }
     }
