@@ -22,11 +22,12 @@ class WorldHolidayViewModel @Inject constructor(
 
     fun loadWorldHolidays() {
         viewModelScope.launch {
+            _uiState.value = WorldHolidayUIState.Loading(isLoading = true)
             val holidays = withContext(Dispatchers.IO) {
                 holidaysRepository.fetchNextPublicHolidaysWorldWide()
             }
 
-            println("@@@ holidays resp -> ${holidays.responseData}")
+            _uiState.value = WorldHolidayUIState.Loading(isLoading = false)
 
             if (holidays.responseData != null) {
                 _uiState.value = WorldHolidayUIState.Holidays(

@@ -22,9 +22,12 @@ class CountryHolidayViewModel @Inject constructor(
 
     fun loadHolidays() {
         viewModelScope.launch {
+            _uiState.value = CountryHolidayUIState.Loading(isLoading = true)
             val holidays = withContext(Dispatchers.IO) {
                 holidaysRepository.fetchAllPublicHolidays(year = 2023, countryCode = "US")
             }
+
+            _uiState.value = CountryHolidayUIState.Loading(isLoading = false)
 
             if (holidays.responseData != null) {
                 _uiState.value = CountryHolidayUIState.Holidays(

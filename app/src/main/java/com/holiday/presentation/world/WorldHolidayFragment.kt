@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.holiday.databinding.FragmentWorldHolidayBinding
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.extension.setLottiePadding
 import com.holiday.extension.setNullableAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +37,8 @@ class WorldHolidayFragment : Fragment() {
         setObservers()
         setUpList()
 
+        binding.loader.setLottiePadding()
+
         viewModel.loadWorldHolidays()
     }
 
@@ -47,7 +52,7 @@ class WorldHolidayFragment : Fragment() {
                     renderPasswords(holidays = state.holidays)
                 }
                 is WorldHolidayUIState.Loading -> {
-                    println("@@@ ${state.isLoading}")
+                    setLoaderState(isLoading = state.isLoading)
                 }
             }
         }
@@ -61,6 +66,13 @@ class WorldHolidayFragment : Fragment() {
 
     private fun renderPasswords(holidays: List<HolidaysModel>) {
         worldHolidayAdapter.submitList(holidays)
+    }
+
+    private fun setLoaderState(isLoading: Boolean = false) {
+        binding.apply {
+            loaderGroup.isVisible = isLoading
+            holidaysList.isGone = isLoading
+        }
     }
 
     override fun onDestroyView() {

@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.holiday.databinding.BottomSheetCountryBinding
 import com.holiday.domain.model.CountryModel
+import com.holiday.extension.setLottiePadding
 import com.holiday.extension.setNullableAdapter
 import com.holiday.util.SHEET_HEIGHT
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,6 +72,8 @@ class CountryDialogFragment(
         setObservers()
         setupCountriesList()
 
+        binding.loader.setLottiePadding()
+
         viewModel.loadAllCountries()
     }
 
@@ -86,7 +91,7 @@ class CountryDialogFragment(
                     renderCountries(countries = state.countries)
                 }
                 is CountryUIState.Loading -> {
-                    println("@@@ ${state.isLoading}")
+                    setLoaderState(isLoading = state.isLoading)
                 }
             }
         }
@@ -110,6 +115,13 @@ class CountryDialogFragment(
 
     private fun renderCountries(countries: List<CountryModel>) {
         countryAdapter.submitList(countries)
+    }
+
+    private fun setLoaderState(isLoading: Boolean = false) {
+        binding.apply {
+            loaderGroup.isVisible = isLoading
+            countriesList.isGone = isLoading
+        }
     }
 
     override fun onDestroyView() {

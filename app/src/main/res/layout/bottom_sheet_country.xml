@@ -73,7 +73,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
         android:scaleType="centerInside"
-        app:lottie_colorFilter="?attr/colorPrimary"
+        android:padding="-100dp"
+        app:lottie_colorFilter="?colorPrimary"
+        app:lottie_rawRes="@raw/loader"
         app:lottie_loop="true"
         app:lottie_autoPlay="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,14 +88,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_margin="16dp"
-        android:text="Loading allocation. Please wait ..."
+        android:paddingHorizontal="32dp"
+        android:text="Loading all countries. Please wait ..."
         android:gravity="center_horizontal"
         android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/loaderGroup"
