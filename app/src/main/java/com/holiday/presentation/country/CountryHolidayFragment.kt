@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.holiday.databinding.FragmentCountryHolidayBinding
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.extension.setNullableAdapter
+import com.holiday.presentation.country_select.CountryDialogFragment
 import com.holiday.presentation.world.WorldHolidayAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +21,8 @@ class CountryHolidayFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: CountryHolidayViewModel by viewModels()
+
+    private var bottomSheet: BottomSheetDialogFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +49,11 @@ class CountryHolidayFragment : Fragment() {
                 optionTitle.text = "Change country"
                 selectedOption.text = "Kenya"
                 root.setOnClickListener {
+                    bottomSheet = CountryDialogFragment(
+                        countryCallBack = { countryModel ->
+                        }
+                    )
+                    bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
                 }
             }
 
