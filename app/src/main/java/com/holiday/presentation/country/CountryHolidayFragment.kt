@@ -11,7 +11,7 @@ import com.holiday.databinding.FragmentCountryHolidayBinding
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.extension.setNullableAdapter
 import com.holiday.presentation.country_select.CountryDialogFragment
-import com.holiday.presentation.world.WorldHolidayAdapter
+import com.holiday.presentation.year_picker.YearDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,11 +46,12 @@ class CountryHolidayFragment : Fragment() {
     private fun setupActions() {
         binding.apply {
             selectCountry.apply {
-                optionTitle.text = "Change country"
+                optionTitle.text = "Country"
                 selectedOption.text = "Kenya"
                 root.setOnClickListener {
                     bottomSheet = CountryDialogFragment(
                         countryCallBack = { countryModel ->
+                            selectedOption.text = countryModel.commonName
                         }
                     )
                     bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
@@ -58,9 +59,16 @@ class CountryHolidayFragment : Fragment() {
             }
 
             selectYear.apply {
-                optionTitle.text = "Change year"
+                optionTitle.text = "Year"
                 selectedOption.text = "2023"
                 root.setOnClickListener {
+                    bottomSheet = YearDialogFragment(
+                        selectedYear = 1992,
+                        yearCallBack = { year ->
+                            selectedOption.text = year.toString()
+                        }
+                    )
+                    bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
                 }
             }
         }
@@ -82,14 +90,14 @@ class CountryHolidayFragment : Fragment() {
         }
     }
 
-    private val worldHolidayAdapter: WorldHolidayAdapter by lazy { WorldHolidayAdapter() }
+    private val countryHolidayAdapter: CountryHolidayAdapter by lazy { CountryHolidayAdapter() }
 
     private fun setUpList() {
-        binding.holidaysList.setNullableAdapter(worldHolidayAdapter)
+        binding.holidaysList.setNullableAdapter(countryHolidayAdapter)
     }
 
     private fun renderHolidays(holidays: List<HolidaysModel>) {
-        worldHolidayAdapter.submitList(holidays)
+        countryHolidayAdapter.submitList(holidays)
     }
 
     override fun onDestroyView() {

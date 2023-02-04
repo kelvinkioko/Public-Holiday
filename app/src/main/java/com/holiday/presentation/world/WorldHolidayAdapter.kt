@@ -35,8 +35,6 @@ class WorldHolidayAdapter : ListAdapter<HolidaysModel, WorldHolidayAdapter.ViewH
 
                 globalState.isVisible = holiday.global
                 fixedState.isVisible = holiday.fixed
-                launchYear.isVisible = holiday.launchYear > 0
-                launchYear.text = holiday.launchYear.toString()
             }
         }
     }

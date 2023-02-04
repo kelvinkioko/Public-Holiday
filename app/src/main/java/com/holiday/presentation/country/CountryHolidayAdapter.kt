@@ -36,8 +36,6 @@ class CountryHolidayAdapter :
 
                 globalState.isVisible = holiday.global
                 fixedState.isVisible = holiday.fixed
-                launchYear.isVisible = holiday.launchYear > 0
-                launchYear.text = holiday.launchYear.toString()
             }
         }
     }
