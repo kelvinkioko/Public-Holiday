@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CountryDialogFragment(
+    private val countryModel: CountryModel? = null,
     private val countryCallBack: (CountryModel) -> (Unit)
 ) : BottomSheetDialogFragment() {
 
@@ -105,7 +106,7 @@ class CountryDialogFragment(
 
     private val countryAdapter: CountryAdapter by lazy {
         CountryAdapter(
-            countryCode = "AD",
+            countryCode = countryModel?.countryCode ?: "",
             countryCallBack = { countryModel ->
                 countryCallBack.invoke(countryModel)
                 dismiss()

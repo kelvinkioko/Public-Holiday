@@ -10,11 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.holiday.databinding.FragmentCountryHolidayBinding
+import com.holiday.domain.model.CountryModel
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.domain.repository.HolidayPreferenceRepository
 import com.holiday.extension.setNullableAdapter
 import com.holiday.presentation.country_select.CountryDialogFragment
 import com.holiday.presentation.year_picker.YearDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CountryHolidayFragment : Fragment() {
@@ -24,7 +28,14 @@ class CountryHolidayFragment : Fragment() {
 
     private val viewModel: CountryHolidayViewModel by viewModels()
 
+    @Inject
+    lateinit var holidayPreferenceRepository: HolidayPreferenceRepository
+
     private var bottomSheet: BottomSheetDialogFragment? = null
+
+    private var countryModel: CountryModel? = null
+    private var countryCode = ""
+    private var year = 1970
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,18 +53,24 @@ class CountryHolidayFragment : Fragment() {
         setObservers()
         setUpList()
 
-        viewModel.loadHolidays()
+        loadHolidays()
     }
 
     private fun setupActions() {
         binding.apply {
             selectCountry.apply {
                 optionTitle.text = "Country"
-                selectedOption.text = "Kenya"
+                selectedOption.text = countryModel?.commonName ?: "Select country"
                 root.setOnClickListener {
                     bottomSheet = CountryDialogFragment(
+                        countryModel = countryModel,
                         countryCallBack = { countryModel ->
                             selectedOption.text = countryModel.commonName
+                            this@CountryHolidayFragment.countryModel = countryModel
+                            this@CountryHolidayFragment.countryCode = countryModel.countryCode
+
+                            saveCountrySelection()
+                            loadHolidays()
                         }
                     )
                     bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
@@ -62,12 +79,16 @@ class CountryHolidayFragment : Fragment() {
 
             selectYear.apply {
                 optionTitle.text = "Year"
-                selectedOption.text = "2023"
+                selectedOption.text = year.toString()
                 root.setOnClickListener {
                     bottomSheet = YearDialogFragment(
-                        selectedYear = 1992,
+                        selectedYear = this@CountryHolidayFragment.year,
                         yearCallBack = { year ->
                             selectedOption.text = year.toString()
+                            this@CountryHolidayFragment.year = year
+
+                            saveYearSelection()
+                            loadHolidays()
                         }
                     )
                     bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
@@ -85,10 +106,37 @@ class CountryHolidayFragment : Fragment() {
                 is CountryHolidayUIState.Holidays -> {
                     renderHolidays(holidays = state.holidays)
                 }
+                is CountryHolidayUIState.Country -> {
+                    countryModel = state.countryModel
+                    setupActions()
+                }
                 is CountryHolidayUIState.Loading -> {
                     setLoaderState(isLoading = state.isLoading)
                 }
             }
+        }
+    }
+
+    private fun loadHolidays() {
+        runBlocking {
+            countryCode = holidayPreferenceRepository.getCountry().getOrNull() ?: ""
+            year = holidayPreferenceRepository.getYear().getOrNull() ?: 1970
+        }
+
+        setupActions()
+
+        viewModel.loadHolidays(year = year, countryCode = countryCode)
+    }
+
+    private fun saveCountrySelection() {
+        runBlocking {
+            holidayPreferenceRepository.setCountry(countryCode = countryCode)
+        }
+    }
+
+    private fun saveYearSelection() {
+        runBlocking {
+            holidayPreferenceRepository.setYear(year = year)
         }
     }
 

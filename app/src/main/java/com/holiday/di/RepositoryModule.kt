@@ -1,12 +1,19 @@
 package com.holiday.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.holiday.data.repository.CountryRepositoryImpl
+import com.holiday.data.repository.HolidayPreferenceRepositoryImpl
 import com.holiday.data.repository.HolidayRepositoryImpl
 import com.holiday.domain.repository.CountryRepository
+import com.holiday.domain.repository.HolidayPreferenceRepository
 import com.holiday.domain.repository.HolidaysRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -25,4 +32,20 @@ interface RepositoryModule {
     fun bindHolidaysRepository(
         holidayRepositoryImpl: HolidayRepositoryImpl
     ): HolidaysRepository
+
+    @Binds
+    @Singleton
+    fun bindHolidayPreferenceRepository(
+        holidayPreferenceRepositoryImpl: HolidayPreferenceRepositoryImpl
+    ): HolidayPreferenceRepository
+
+    companion object {
+        @Provides
+        @Singleton
+        fun provideUserDataStorePreferences(
+            @ApplicationContext applicationContext: Context
+        ): DataStore<Preferences> {
+            return applicationContext.holidayDataStore
+        }
+    }
 }
