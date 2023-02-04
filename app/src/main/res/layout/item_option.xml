@@ -27,18 +27,18 @@
             android:paddingVertical="4dp"
             android:textColor="?colorTertiary"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/optionDropDown"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/optionDropDown"
+            app:layout_constraintBottom_toBottomOf="@+id/optionDropDown"
             android:text="Active year" />
 
-        <ImageView
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/optionDropDown"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
             android:layout_gravity="center_vertical"
-            android:contentDescription="drop_down"
+            android:checked="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/optionTitle"
@@ -49,7 +49,7 @@
             style="@style/TitleTextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:includeFontPadding="false"
             android:paddingVertical="4dp"
             android:textColor="?colorTertiary"

@@ -46,7 +46,7 @@ class CountryHolidayFragment : Fragment() {
     private fun setupActions() {
         binding.apply {
             selectCountry.apply {
-                optionTitle.text = "Change country"
+                optionTitle.text = "Country"
                 selectedOption.text = "Kenya"
                 root.setOnClickListener {
                     bottomSheet = CountryDialogFragment(
@@ -58,7 +58,7 @@ class CountryHolidayFragment : Fragment() {
             }
 
             selectYear.apply {
-                optionTitle.text = "Change year"
+                optionTitle.text = "Year"
                 selectedOption.text = "2023"
                 root.setOnClickListener {
                 }
