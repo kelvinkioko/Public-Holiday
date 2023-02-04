@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -71,6 +72,7 @@ class CountryDialogFragment(
 
         setupToolBar()
         setObservers()
+        setInputListeners()
         setupCountriesList()
 
         binding.loader.setLottiePadding()
@@ -122,6 +124,15 @@ class CountryDialogFragment(
         binding.apply {
             loaderGroup.isVisible = isLoading
             countriesList.isGone = isLoading
+        }
+    }
+
+    private fun setInputListeners() {
+        binding.searchCountryInput.editText?.doAfterTextChanged { searchQuery ->
+            if (searchQuery != null && searchQuery.isNotEmpty())
+                viewModel.filterCountries(searchQuery = searchQuery.toString())
+            else
+                viewModel.filterCountries(searchQuery = "")
         }
     }
 

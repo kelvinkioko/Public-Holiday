@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -49,6 +50,7 @@ class CountryHolidayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setInputListeners()
         setupActions()
         setObservers()
         setUpList()
@@ -154,6 +156,15 @@ class CountryHolidayFragment : Fragment() {
         binding.apply {
             loaderGroup.isVisible = isLoading
             holidaysList.isGone = isLoading
+        }
+    }
+
+    private fun setInputListeners() {
+        binding.searchHolidayInput.editText?.doAfterTextChanged { searchQuery ->
+            if (searchQuery != null && searchQuery.isNotEmpty())
+                viewModel.filterHolidays(searchQuery = searchQuery.toString())
+            else
+                viewModel.filterHolidays(searchQuery = "")
         }
     }
 

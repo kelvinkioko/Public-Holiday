@@ -23,10 +23,10 @@ fun String.dateFormatter(): DateResource {
     }
 }
 
-fun DateResource.dateFormatter(): String {
+fun DateResource.dateFormatter(format: String = DateConstants.YMD_HYPHEN): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         (this as DateResource.LocalDateFormat).localDate.format(
-            DateTimeFormatter.ofPattern(DateConstants.YMD_HYPHEN)
+            DateTimeFormatter.ofPattern(format)
         )
     else
         (this as DateResource.StringDate).stringDate
@@ -34,4 +34,5 @@ fun DateResource.dateFormatter(): String {
 
 object DateConstants {
     const val YMD_HYPHEN = "yyyy-MM-dd"
+    const val DAY_DMY_HYPHEN = "EEE dd, MMM yyyy"
 }

@@ -20,24 +20,36 @@ class CountryViewModel @Inject constructor(
     private val _uiState = MutableLiveData<CountryUIState>()
     val uiState: LiveData<CountryUIState> = _uiState
 
+    private val countries = mutableListOf<CountryModel>()
+
     fun loadAllCountries() {
         viewModelScope.launch {
             _uiState.value = CountryUIState.Loading(isLoading = true)
-            val holidays = withContext(Dispatchers.IO) {
+            val countriesResponse = withContext(Dispatchers.IO) {
                 countryRepository.fetchAllCountries()
             }
 
             _uiState.value = CountryUIState.Loading(isLoading = false)
-            if (holidays.responseData != null) {
-                _uiState.value = CountryUIState.Country(
-                    countries = holidays.responseData
-                )
+            if (countriesResponse.responseData != null) {
+                countries.clear()
+                countries.addAll(countriesResponse.responseData)
+                _uiState.value = CountryUIState.Country(countries = countries)
             } else {
                 _uiState.value = CountryUIState.Error(
-                    message = holidays.errorMessage ?: ""
+                    message = countriesResponse.errorMessage ?: ""
                 )
             }
         }
+    }
+
+    fun filterCountries(searchQuery: String) {
+        val filteredCountries = countries.filter {
+            it.commonName.contains(searchQuery, ignoreCase = true) ||
+                it.officialName.contains(searchQuery, ignoreCase = true) ||
+                it.countryCode.contains(searchQuery, ignoreCase = true)
+        }
+
+        _uiState.value = CountryUIState.Country(countries = filteredCountries)
     }
 }
 

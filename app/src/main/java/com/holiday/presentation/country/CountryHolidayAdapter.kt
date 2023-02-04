@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.holiday.databinding.ItemHolidayBinding
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.extension.DateConstants
+import com.holiday.extension.dateFormatter
 
 class CountryHolidayAdapter :
     ListAdapter<HolidaysModel, CountryHolidayAdapter.ViewHolder>(DIFF_UTIL) {
@@ -33,6 +35,7 @@ class CountryHolidayAdapter :
             binding.apply {
                 holidayName.text = holiday.name
                 holidayLocalName.text = holiday.localName
+                holidayDate.text = holiday.date?.dateFormatter(format = DateConstants.DAY_DMY_HYPHEN)
 
                 globalState.isVisible = holiday.global
                 fixedState.isVisible = holiday.fixed
