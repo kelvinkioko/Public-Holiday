@@ -22,10 +22,12 @@ class CountryViewModel @Inject constructor(
 
     fun loadAllCountries() {
         viewModelScope.launch {
+            _uiState.value = CountryUIState.Loading(isLoading = true)
             val holidays = withContext(Dispatchers.IO) {
                 countryRepository.fetchAllCountries()
             }
 
+            _uiState.value = CountryUIState.Loading(isLoading = false)
             if (holidays.responseData != null) {
                 _uiState.value = CountryUIState.Country(
                     countries = holidays.responseData

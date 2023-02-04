@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -84,7 +86,7 @@ class CountryHolidayFragment : Fragment() {
                     renderHolidays(holidays = state.holidays)
                 }
                 is CountryHolidayUIState.Loading -> {
-                    println("@@@ ${state.isLoading}")
+                    setLoaderState(isLoading = state.isLoading)
                 }
             }
         }
@@ -98,6 +100,13 @@ class CountryHolidayFragment : Fragment() {
 
     private fun renderHolidays(holidays: List<HolidaysModel>) {
         countryHolidayAdapter.submitList(holidays)
+    }
+
+    private fun setLoaderState(isLoading: Boolean = false) {
+        binding.apply {
+            loaderGroup.isVisible = isLoading
+            holidaysList.isGone = isLoading
+        }
     }
 
     override fun onDestroyView() {
