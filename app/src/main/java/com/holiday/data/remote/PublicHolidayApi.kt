@@ -34,12 +34,12 @@ interface PublicHolidayApi {
         @Path("countryCode") countryCode: String
     ): List<HolidaysDto>
 
-    @GET("IsTodayPublicHoliday//{countryCode}")
+    @GET("IsTodayPublicHoliday/{countryCode}")
     suspend fun getIsTodayPublicHolidayCountryCode(
         @Path("countryCode") countryCode: String
     ): HolidaysDto
 
-    @GET("NextPublicHolidays//{countryCode}")
+    @GET("NextPublicHolidays/{countryCode}")
     suspend fun getNextPublicHolidayCountryCode(
         @Path("countryCode") countryCode: String
     ): List<HolidaysDto>

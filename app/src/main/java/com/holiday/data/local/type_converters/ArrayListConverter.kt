@@ -7,7 +7,13 @@ import java.lang.reflect.Type
 
 class ArrayListConverter {
     @TypeConverter
-    fun fromStringArrayList(value: List<String>): String = Gson().toJson(value)
+    fun fromStringArrayList(value: List<String>? = null): String {
+        value?.let {
+            return Gson().toJson(value)
+        } ?: run {
+            return ""
+        }
+    }
 
     @TypeConverter
     fun toStringArrayList(value: String): List<String> {

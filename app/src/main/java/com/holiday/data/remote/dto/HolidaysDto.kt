@@ -10,6 +10,6 @@ data class HolidaysDto(
     @field:Json(name = "fixed") val fixed: Boolean,
     @field:Json(name = "global") val global: Boolean,
     @field:Json(name = "counties") val counties: List<String>,
-    @field:Json(name = "launchYear") val launchYear: Int,
+    @field:Json(name = "launchYear") val launchYear: Int? = 0,
     @field:Json(name = "types") val types: List<String>
 )

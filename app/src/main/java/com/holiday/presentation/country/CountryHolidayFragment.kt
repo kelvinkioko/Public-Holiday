@@ -5,12 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.holiday.databinding.FragmentCountryHolidayBinding
+import com.holiday.domain.model.HolidaysModel
+import com.holiday.extension.setNullableAdapter
+import com.holiday.presentation.world.WorldHolidayAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CountryHolidayFragment : Fragment() {
 
     private var _binding: FragmentCountryHolidayBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: CountryHolidayViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +31,56 @@ class CountryHolidayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupActions()
+        setObservers()
+        setUpList()
+
+        viewModel.loadHolidays()
+    }
+
+    private fun setupActions() {
+        binding.apply {
+            selectCountry.apply {
+                optionTitle.text = "Change country"
+                selectedOption.text = "Kenya"
+                root.setOnClickListener {
+                }
+            }
+
+            selectYear.apply {
+                optionTitle.text = "Change year"
+                selectedOption.text = "2023"
+                root.setOnClickListener {
+                }
+            }
+        }
+    }
+
+    private fun setObservers() {
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is CountryHolidayUIState.Error -> {
+                    println("@@@ ${state.message}")
+                }
+                is CountryHolidayUIState.Holidays -> {
+                    renderHolidays(holidays = state.holidays)
+                }
+                is CountryHolidayUIState.Loading -> {
+                    println("@@@ ${state.isLoading}")
+                }
+            }
+        }
+    }
+
+    private val worldHolidayAdapter: WorldHolidayAdapter by lazy { WorldHolidayAdapter() }
+
+    private fun setUpList() {
+        binding.holidaysList.setNullableAdapter(worldHolidayAdapter)
+    }
+
+    private fun renderHolidays(holidays: List<HolidaysModel>) {
+        worldHolidayAdapter.submitList(holidays)
     }
 
     override fun onDestroyView() {

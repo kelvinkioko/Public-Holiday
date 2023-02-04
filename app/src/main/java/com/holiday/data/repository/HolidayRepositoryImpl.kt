@@ -61,7 +61,7 @@ class HolidayRepositoryImpl @Inject constructor(
 
                 insertHolidayToDB(holidaysDto = holidaysDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load countries")
+                return Response.Error(errorMessage = "Could not load public holidays")
             }
         }
 
@@ -80,19 +80,29 @@ class HolidayRepositoryImpl @Inject constructor(
 
                 insertHolidayToDB(holidaysDto = holidaysDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load countries")
+                return Response.Error(errorMessage = "Could not load public holidays")
             }
         }
 
-        val holidaysModel = loadHolidaysFromDB(countryCode = countryCode)
+        val holidaysModel = loadHolidaysFromDB()
         return Response.Success(responseData = holidaysModel)
     }
 
-    private suspend fun loadHolidaysFromDB(year: Int? = null, countryCode: String): List<HolidaysModel> {
-        val holidays = year?.let {
-            holidaysDao.loadHolidaysByYearAndCountryCode(year = year, countryCode = countryCode)
-        } ?: kotlin.run {
-            holidaysDao.loadHolidaysByCountryCode(countryCode = countryCode)
+    private suspend fun loadHolidaysFromDB(
+        year: Int? = null,
+        countryCode: String? = null
+    ): List<HolidaysModel> {
+        val holidays = if (year == null && countryCode == null) {
+            holidaysDao.loadWorldWideHolidays()
+        } else if (year == null) {
+            holidaysDao.loadHolidaysByCountryCode(
+                countryCode = countryCode ?: ""
+            )
+        } else {
+            holidaysDao.loadHolidaysByYearAndCountryCode(
+                year = year,
+                countryCode = countryCode ?: ""
+            )
         }
 
         val holidaysModel = mutableListOf<HolidaysModel>()
