@@ -1,0 +1,57 @@
+package com.holiday.presentation.world
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.holiday.databinding.ItemHolidayBinding
+import com.holiday.domain.model.HolidaysModel
+
+class WorldHolidayAdapter : ListAdapter<HolidaysModel, WorldHolidayAdapter.ViewHolder>(DIFF_UTIL) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ItemHolidayBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(holiday = currentList[position])
+    }
+
+    inner class ViewHolder(
+        private val binding: ItemHolidayBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(holiday: HolidaysModel) {
+            binding.apply {
+                holidayName.text = holiday.name
+                holidayLocalName.text = holiday.localName
+
+                globalState.isVisible = holiday.global
+                fixedState.isVisible = holiday.fixed
+                launchYear.isVisible = holiday.launchYear > 0
+                launchYear.text = holiday.launchYear.toString()
+            }
+        }
+    }
+
+    companion object {
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<HolidaysModel>() {
+            override fun areItemsTheSame(
+                oldItem: HolidaysModel,
+                newItem: HolidaysModel
+            ): Boolean = oldItem == newItem
+
+            override fun areContentsTheSame(
+                oldItem: HolidaysModel,
+                newItem: HolidaysModel
+            ): Boolean = oldItem == newItem
+        }
+    }
+}

@@ -12,7 +12,8 @@ data class HolidaysEntity(
     @ColumnInfo(name = "countryCode") val countryCode: String = "",
     @ColumnInfo(name = "fixed") val fixed: Boolean,
     @ColumnInfo(name = "global") val global: Boolean,
-    @ColumnInfo(name = "counties") val counties: List<String> = emptyList(),
+    @ColumnInfo(name = "counties") val counties: List<String>? = null,
     @ColumnInfo(name = "launchYear") val launchYear: Int,
-    @ColumnInfo(name = "types") val types: List<String> = emptyList()
+    @ColumnInfo(name = "types") val types: List<String>? = null,
+    @ColumnInfo(name = "worldWide") val worldWide: Boolean = false
 )

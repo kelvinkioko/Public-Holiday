@@ -3,6 +3,7 @@ package com.holiday.data.mapper
 import com.holiday.data.local.entity.HolidaysEntity
 import com.holiday.data.remote.dto.HolidaysDto
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.extension.dateFormatter
 
 fun HolidaysDto.mapToHolidaysEntity(): HolidaysEntity {
     return HolidaysEntity(
@@ -13,21 +14,21 @@ fun HolidaysDto.mapToHolidaysEntity(): HolidaysEntity {
         fixed = fixed,
         global = global,
         counties = counties,
-        launchYear = launchYear,
+        launchYear = launchYear ?: 0,
         types = types
     )
 }
 
 fun HolidaysEntity.mapToHolidaysModel(): HolidaysModel {
     return HolidaysModel(
-        date = date,
+        date = date.dateFormatter(),
         localName = localName,
         name = name,
         countryCode = countryCode,
         fixed = fixed,
         global = global,
-        counties = counties,
+        counties = counties ?: emptyList(),
         launchYear = launchYear,
-        types = types
+        types = types ?: emptyList()
     )
 }

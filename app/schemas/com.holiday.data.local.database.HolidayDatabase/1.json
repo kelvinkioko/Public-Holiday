@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3a9ac177d94135514e92f557d24d8d84",
+    "identityHash": "e19a20a700b4a5da96ff6d9a3bd82235",
     "entities": [
       {
         "tableName": "country",
@@ -89,7 +89,7 @@
       },
       {
         "tableName": "holidays",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`year` TEXT NOT NULL, `date` TEXT NOT NULL, `localName` TEXT NOT NULL, `name` TEXT NOT NULL, `countryCode` TEXT NOT NULL, `fixed` INTEGER NOT NULL, `global` INTEGER NOT NULL, `counties` TEXT NOT NULL, `launchYear` INTEGER NOT NULL, `types` TEXT NOT NULL, PRIMARY KEY(`countryCode`, `date`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`year` TEXT NOT NULL, `date` TEXT NOT NULL, `localName` TEXT NOT NULL, `name` TEXT NOT NULL, `countryCode` TEXT NOT NULL, `fixed` INTEGER NOT NULL, `global` INTEGER NOT NULL, `counties` TEXT, `launchYear` INTEGER NOT NULL, `types` TEXT, `worldWide` INTEGER NOT NULL, PRIMARY KEY(`countryCode`, `date`))",
         "fields": [
           {
             "fieldPath": "year",
@@ -137,7 +137,7 @@
             "fieldPath": "counties",
             "columnName": "counties",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "launchYear",
@@ -149,6 +149,12 @@
             "fieldPath": "types",
             "columnName": "types",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "worldWide",
+            "columnName": "worldWide",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -205,7 +211,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3a9ac177d94135514e92f557d24d8d84')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e19a20a700b4a5da96ff6d9a3bd82235')"
     ]
   }
 }
