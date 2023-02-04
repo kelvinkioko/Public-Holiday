@@ -33,12 +33,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/optionDropDown"
             android:text="Active year" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
+        <ImageView
             android:id="@+id/optionDropDown"
             android:layout_width="wrap_content"
-            android:layout_height="10dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:checked="true"
+            android:contentDescription="drop_down"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/optionTitle"

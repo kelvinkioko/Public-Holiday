@@ -1,49 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="16dp"
+    android:paddingTop="16dp"
     android:paddingStart="24dp"
     android:paddingEnd="0dp">
-
-    <TextView
-        android:id="@+id/dayOfMonth"
-        style="@style/HeadlineTextAppearance"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textSize="30sp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/monthName"
-        android:text="24" />
-
-    <TextView
-        android:id="@+id/monthName"
-        style="@style/TitleTextAppearance"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textSize="20sp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dayOfMonth"
-        android:text="FEB" />
 
     <TextView
         android:id="@+id/holidayName"
         style="@style/MainTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:includeFontPadding="false"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dayOfMonth"
+        app:layout_constraintEnd_toStartOf="@+id/stateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Feast of Saint Agatha" />
 
@@ -52,32 +26,57 @@
         style="@style/MainTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:includeFontPadding="false"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dayOfMonth"
+        app:layout_constraintEnd_toStartOf="@+id/stateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/holidayName"
         tools:text="Lá Fhéile Bríde" />
+
+    <TextView
+        android:id="@+id/holidayDate"
+        style="@style/SubItemTextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:includeFontPadding="false"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/stateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holidayLocalName"
+        android:text="24th Feb, 2023" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/stateBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="globalState, fixedState" />
 
     <TextView
         android:id="@+id/globalState"
         style="@style/MainTextAppearance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/chip_shape"
         android:includeFontPadding="false"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
-        android:textSize="14sp"
-        android:background="@drawable/chip_shape"
-        android:textColor="?colorOnTertiary"
-        app:layout_goneMarginEnd="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/fixedState"
-        app:layout_constraintTop_toBottomOf="@+id/holidayLocalName"
         android:text="Global"
+        android:textColor="?colorOnTertiary"
+        android:textSize="12sp"
         android:visibility="gone"
+        app:layout_goneMarginBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fixedState"
+        app:layout_constraintTop_toBottomOf="@+id/holidayLocalName"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:visibility="visible" />
 
     <TextView
@@ -85,39 +84,30 @@
         style="@style/MainTextAppearance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
         android:layout_marginTop="8dp"
-        android:includeFontPadding="false"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:textSize="14sp"
-        android:background="@drawable/chip_shape"
-        android:textColor="?colorOnTertiary"
-        app:layout_goneMarginEnd="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/launchYear"
-        app:layout_constraintTop_toBottomOf="@+id/holidayLocalName"
-        android:text="Fixed"
-        android:visibility="gone"
-        tools:visibility="gone" />
-
-    <TextView
-        android:id="@+id/launchYear"
-        style="@style/MainTextAppearance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:includeFontPadding="false"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:textSize="14sp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/chip_shape"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="Fixed"
         android:textColor="?colorOnTertiary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/holidayLocalName"
-        android:text="2023"
+        android:textSize="12sp"
         android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/globalState"
+        app:layout_goneMarginTop="0dp"
         tools:visibility="visible" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?colorOutline"
+        android:alpha="0.4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
