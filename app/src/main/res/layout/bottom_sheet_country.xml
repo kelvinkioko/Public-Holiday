@@ -52,10 +52,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allocationList"
+        android:id="@+id/countriesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingBottom="70dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
