@@ -5,8 +5,9 @@ import com.holiday.data.remote.dto.HolidaysDto
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.extension.dateFormatter
 
-fun HolidaysDto.mapToHolidaysEntity(): HolidaysEntity {
+fun HolidaysDto.mapToHolidaysEntity(holidayYear: Int, worldWide: Boolean): HolidaysEntity {
     return HolidaysEntity(
+        holidayYear = holidayYear,
         date = date,
         localName = localName,
         name = name,
@@ -15,7 +16,8 @@ fun HolidaysDto.mapToHolidaysEntity(): HolidaysEntity {
         global = global,
         counties = counties,
         launchYear = launchYear ?: 0,
-        types = types
+        types = types,
+        worldWide = worldWide
     )
 }
 

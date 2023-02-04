@@ -23,7 +23,7 @@ class CountryHolidayViewModel @Inject constructor(
     fun loadHolidays() {
         viewModelScope.launch {
             val holidays = withContext(Dispatchers.IO) {
-                holidaysRepository.fetchNextPublicHolidays(countryCode = "US")
+                holidaysRepository.fetchAllPublicHolidays(year = 2023, countryCode = "US")
             }
 
             if (holidays.responseData != null) {

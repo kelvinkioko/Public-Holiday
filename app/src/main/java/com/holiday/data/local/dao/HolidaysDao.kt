@@ -12,26 +12,20 @@ interface HolidaysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHolidaysEntity(holidaysEntity: HolidaysEntity)
 
-    @Query("SELECT * FROM holidays WHERE year =:year AND countryCode =:countryCode")
+    @Query("SELECT * FROM holidays WHERE holidayYear =:year AND countryCode =:countryCode")
     suspend fun loadHolidaysByYearAndCountryCode(
         year: Int,
         countryCode: String
     ): List<HolidaysEntity>
 
-    @Query("SELECT * FROM holidays WHERE countryCode =:countryCode")
-    suspend fun loadHolidaysByCountryCode(countryCode: String): List<HolidaysEntity>
-
-    @Query("SELECT * FROM holidays")
+    @Query("SELECT * FROM holidays WHERE worldWide =true")
     suspend fun loadWorldWideHolidays(): List<HolidaysEntity>
 
-    @Query("SELECT COUNT(name) FROM holidays WHERE year =:year AND countryCode =:countryCode")
+    @Query("SELECT COUNT(name) FROM holidays WHERE holidayYear =:year AND countryCode =:countryCode")
     suspend fun countHolidaysByYearAndCountryCode(year: Int, countryCode: String): Int
 
-    @Query("SELECT COUNT(name) FROM holidays WHERE countryCode =:countryCode")
-    suspend fun countHolidaysByCountryCode(countryCode: String): Int
-
-    @Query("SELECT COUNT(name) FROM holidays")
-    suspend fun countHolidays(): Int
+    @Query("SELECT COUNT(name) FROM holidays WHERE worldWide =true")
+    suspend fun countWorldWideHolidays(): Int
 
     @Delete
     suspend fun deleteHolidaysEntity(holidaysEntity: HolidaysEntity)
