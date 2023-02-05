@@ -3,16 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
+    android:layout_marginVertical="8dp"
+    android:layout_marginEnd="8dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
@@ -20,45 +22,48 @@
 
         <TextView
             android:id="@+id/optionTitle"
-            style="@style/SubItemTextAppearance"
-            android:layout_width="0dp"
+            style="@style/HeadlineTextAppearance"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:paddingVertical="4dp"
-            android:textColor="?colorTertiary"
-            android:textSize="14sp"
+            android:textColor="?colorSecondary"
+            android:textSize="24sp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/optionDropDown"
-            app:layout_constraintBottom_toBottomOf="@+id/optionDropDown"
-            android:text="Active year" />
-
-        <ImageView
-            android:id="@+id/optionDropDown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="drop_down"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/optionTitle"
-            app:srcCompat="@drawable/ic_expand_more" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="3 Days" />
 
         <TextView
-            android:id="@+id/selectedOption"
-            style="@style/TitleTextAppearance"
-            android:layout_width="0dp"
+            android:id="@+id/startDate"
+            style="@style/SubItemTextAppearance"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:includeFontPadding="false"
             android:paddingVertical="4dp"
-            android:textColor="?colorTertiary"
-            android:textSize="16sp"
-            android:lines="2"
+            android:textColor="?colorSecondary"
+            android:textSize="14sp"
+            android:lines="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/optionTitle"
-            android:text="United States of America" />
+            android:text="14th Jan 2023" />
+
+        <TextView
+            android:id="@+id/endDate"
+            style="@style/SubItemTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingVertical="4dp"
+            android:textColor="?colorSecondary"
+            android:textSize="14sp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startDate"
+            android:text="16th Jan 2023" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

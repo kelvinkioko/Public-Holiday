@@ -88,7 +88,7 @@ class CountryDialogFragment(
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is CountryUIState.Error -> {
-                    println("@@@ ${state.message}")
+                    setEmptyState()
                 }
                 is CountryUIState.Country -> {
                     renderCountries(countries = state.countries)
@@ -117,6 +117,7 @@ class CountryDialogFragment(
     }
 
     private fun renderCountries(countries: List<CountryModel>) {
+        setEmptyState(isVisible = countries.isEmpty())
         countryAdapter.submitList(countries)
     }
 
@@ -124,6 +125,16 @@ class CountryDialogFragment(
         binding.apply {
             loaderGroup.isVisible = isLoading
             countriesList.isGone = isLoading
+        }
+    }
+
+    private fun setEmptyState(isVisible: Boolean = true) {
+        binding.apply {
+            countriesList.isGone = isVisible
+            emptyState.apply {
+                root.isVisible = isVisible
+                emptyMessage.text = "No countries available."
+            }
         }
     }
 

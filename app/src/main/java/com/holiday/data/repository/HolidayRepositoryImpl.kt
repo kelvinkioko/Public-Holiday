@@ -75,7 +75,6 @@ class HolidayRepositoryImpl @Inject constructor(
 
         val holidaysModel = mutableListOf<HolidaysModel>()
         holidays.map { holidayEntity ->
-            println("@@@ holiday entity $holidayEntity")
             val holidayModel = holidayEntity.mapToHolidaysModel()
             holidaysModel.add(holidayModel)
         }
