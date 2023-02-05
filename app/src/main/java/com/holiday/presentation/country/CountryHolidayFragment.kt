@@ -103,7 +103,7 @@ class CountryHolidayFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is CountryHolidayUIState.Error -> {
-                    println("@@@ ${state.message}")
+                    setEmptyState()
                 }
                 is CountryHolidayUIState.Holidays -> {
                     renderHolidays(holidays = state.holidays)
@@ -149,6 +149,7 @@ class CountryHolidayFragment : Fragment() {
     }
 
     private fun renderHolidays(holidays: List<HolidaysModel>) {
+        setEmptyState(isVisible = holidays.isEmpty())
         countryHolidayAdapter.submitList(holidays)
     }
 
@@ -156,6 +157,17 @@ class CountryHolidayFragment : Fragment() {
         binding.apply {
             loaderGroup.isVisible = isLoading
             holidaysList.isGone = isLoading
+            emptyState.root.isGone = true
+        }
+    }
+
+    private fun setEmptyState(isVisible: Boolean = true) {
+        binding.apply {
+            holidaysList.isGone = isVisible
+            emptyState.apply {
+                root.isVisible = isVisible
+                emptyMessage.text = "No holidays available. Please change the country or year above"
+            }
         }
     }
 
