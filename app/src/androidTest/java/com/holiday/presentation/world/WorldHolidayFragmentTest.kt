@@ -63,6 +63,7 @@ class WorldHolidayFragmentTest {
 
     @Test
     fun verifyWorldWideHolidaysShowSuccessfully() {
+        launchFragmentInHiltContainer<WorldHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
     }
 
     @Test
