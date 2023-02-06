@@ -100,7 +100,7 @@ class CountryHolidayFragment : Fragment() {
                 }
             }
 
-            longWeekends.setOnClickListener {
+            longWeekendButton.setOnClickListener {
                 bottomSheet = LongWeekendDialogFragment(
                     year = this@CountryHolidayFragment.year,
                     countryCode = this@CountryHolidayFragment.countryCode

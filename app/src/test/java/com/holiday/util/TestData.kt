@@ -1,7 +1,10 @@
 package com.holiday.util
 
+import com.holiday.data.local.entity.LongWeekendEntity
+import com.holiday.data.remote.dto.LongWeekendDto
 import com.holiday.domain.model.CountryModel
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.domain.model.LongWeekendModel
 import com.holiday.extension.dateFormatter
 
 val countries = mutableListOf(
@@ -123,4 +126,23 @@ val countryWideHolidaysModel = arrayListOf(
         launchYear = 0,
         types = arrayListOf("Public")
     )
+)
+
+val longWeekendDto = arrayListOf(
+    LongWeekendDto(startDate = "2015-01-01", endDate = "2015-01-04", dayCount = "4", needBridgeDay = true),
+    LongWeekendDto(startDate = "2015-01-24", endDate = "2015-01-26", dayCount = "3", needBridgeDay = false),
+    LongWeekendDto(startDate = "2015-04-03", endDate = "2015-04-06", dayCount = "4", needBridgeDay = false),
+    LongWeekendDto(startDate = "2015-12-25", endDate = "2015-12-28", dayCount = "4", needBridgeDay = false)
+)
+val longWeekendEntity = arrayListOf(
+    LongWeekendEntity(startDate = "2015-01-01", endDate = "2015-01-04", dayCount = "4", needBridgeDay = true, year = 2015, countryCode = "AU"),
+    LongWeekendEntity(startDate = "2015-01-24", endDate = "2015-01-26", dayCount = "3", needBridgeDay = false, year = 2015, countryCode = "AU"),
+    LongWeekendEntity(startDate = "2015-04-03", endDate = "2015-04-06", dayCount = "4", needBridgeDay = false, year = 2015, countryCode = "AU"),
+    LongWeekendEntity(startDate = "2015-12-25", endDate = "2015-12-28", dayCount = "4", needBridgeDay = false, year = 2015, countryCode = "AU")
+)
+val longWeekendModel = arrayListOf(
+    LongWeekendModel(startDate = "2015-01-01".dateFormatter(), endDate = "2015-01-04".dateFormatter(), dayCount = "4", needBridgeDay = true),
+    LongWeekendModel(startDate = "2015-01-24".dateFormatter(), endDate = "2015-01-26".dateFormatter(), dayCount = "3", needBridgeDay = false),
+    LongWeekendModel(startDate = "2015-04-03".dateFormatter(), endDate = "2015-04-06".dateFormatter(), dayCount = "4", needBridgeDay = false),
+    LongWeekendModel(startDate = "2015-12-25".dateFormatter(), endDate = "2015-12-28".dateFormatter(), dayCount = "4", needBridgeDay = false)
 )

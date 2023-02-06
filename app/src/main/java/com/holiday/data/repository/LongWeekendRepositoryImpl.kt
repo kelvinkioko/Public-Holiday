@@ -32,11 +32,9 @@ class LongWeekendRepositoryImpl @Inject constructor(
                     countryCode = countryCode
                 )
 
-                println("@@@ $weekendsDto")
-
                 insertWeekendsToDB(year = year, countryCode = countryCode, weekendsDto = weekendsDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load public holidays")
+                return Response.Error(errorMessage = "Could not load long weekends")
             }
         }
 

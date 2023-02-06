@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="@id/guidelineStart"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/longWeekends"
+        android:id="@+id/longWeekendButton"
         style="@style/TextButtonAppearance"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
