@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.holiday.R
 import com.holiday.databinding.BottomSheetLongWeekendBinding
 import com.holiday.domain.model.LongWeekendModel
 import com.holiday.extension.observeState
@@ -125,7 +126,7 @@ class LongWeekendDialogFragment(
             longWeekendList.isGone = isVisible
             emptyState.apply {
                 root.isVisible = isVisible
-                emptyMessage.text = "No long weekends available."
+                emptyMessage.text = getString(R.string.no_long_weekends)
             }
         }
     }

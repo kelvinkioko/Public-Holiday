@@ -48,7 +48,7 @@ class CountryHolidayFragmentTest {
         )
 
         onView(withId(R.id.holidaysHeader)).check(
-            matches(withText(R.string.available_holidays))
+            matches(withText(R.string.holidays))
         )
 
         onView(withId(R.id.searchCountryHolidayInputValue))

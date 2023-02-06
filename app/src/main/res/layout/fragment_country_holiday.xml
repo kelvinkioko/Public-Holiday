@@ -46,7 +46,7 @@
         style="@style/MainTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/available_holidays"
+        android:text="@string/holidays"
         android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
@@ -59,22 +59,23 @@
         style="@style/TextButtonAppearance"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="View long weekends"
+        android:text="@string/view_long_weekends"
         android:enabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/holidaysHeader"
-        app:layout_constraintTop_toTopOf="@id/holidaysHeader"
-        app:layout_constraintBottom_toBottomOf="@id/holidaysHeader" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectCountry" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchCountryHolidayInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:letterSpacing="0.07"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:hintTextAppearance="?attr/textAppearanceCaption"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@id/holidaysHeader"
+        app:layout_constraintTop_toBottomOf="@id/longWeekendButton"
         app:layout_constraintStart_toStartOf="@id/guidelineStart" >
 
         <com.google.android.material.textfield.TextInputEditText

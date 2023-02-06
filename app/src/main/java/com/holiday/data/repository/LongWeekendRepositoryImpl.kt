@@ -1,5 +1,6 @@
 package com.holiday.data.repository
 
+import com.holiday.R
 import com.holiday.data.local.dao.LongWeekendDao
 import com.holiday.data.mapper.mapToLongWeekEndEntity
 import com.holiday.data.mapper.mapToLongWeekEndModel
@@ -34,7 +35,7 @@ class LongWeekendRepositoryImpl @Inject constructor(
 
                 insertWeekendsToDB(year = year, countryCode = countryCode, weekendsDto = weekendsDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load long weekends")
+                return Response.Error(errorMessage = R.string.could_not_load_long_weekends)
             }
         }
 

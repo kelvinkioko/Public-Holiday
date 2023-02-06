@@ -1,5 +1,6 @@
 package com.holiday.data.repository
 
+import com.holiday.R
 import com.holiday.data.local.dao.HolidaysDao
 import com.holiday.data.mapper.mapToHolidaysEntity
 import com.holiday.data.mapper.mapToHolidaysModel
@@ -34,7 +35,7 @@ class HolidayRepositoryImpl @Inject constructor(
 
                 insertHolidayToDB(year = year, holidaysDto = holidaysDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load countries")
+                return Response.Error(errorMessage = R.string.could_not_load_holidays)
             }
         }
 
@@ -51,7 +52,7 @@ class HolidayRepositoryImpl @Inject constructor(
 
                 insertHolidayToDB(holidaysDto = holidaysDto, worldWide = true)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load public holidays")
+                return Response.Error(errorMessage = R.string.could_not_load_public_holidays)
             }
         }
 

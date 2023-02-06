@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.holiday.R
 import com.holiday.databinding.BottomSheetCountryBinding
 import com.holiday.domain.model.CountryModel
 import com.holiday.extension.observeState
@@ -135,7 +136,7 @@ class CountryDialogFragment(
             countriesList.isGone = isVisible
             emptyState.apply {
                 root.isVisible = isVisible
-                emptyMessage.text = "No countries available."
+                emptyMessage.text = getString(R.string.no_countries_available)
             }
         }
     }

@@ -31,14 +31,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/optionDropDown"
             app:layout_constraintBottom_toBottomOf="@+id/optionDropDown"
-            android:text="Active year" />
+            android:text="@string/active_year" />
 
         <ImageView
             android:id="@+id/optionDropDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:contentDescription="drop_down"
+            android:contentDescription="@string/drop_down"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/optionTitle"
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/optionTitle"
-            android:text="United States of America" />
+            tools:text="United States of America" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

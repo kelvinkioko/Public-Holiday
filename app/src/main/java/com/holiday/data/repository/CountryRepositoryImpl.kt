@@ -1,5 +1,6 @@
 package com.holiday.data.repository
 
+import com.holiday.R
 import com.holiday.data.local.dao.BordersDao
 import com.holiday.data.local.dao.CountryDao
 import com.holiday.data.local.entity.CountryEntity
@@ -26,14 +27,13 @@ class CountryRepositoryImpl @Inject constructor(
 ) : CountryRepository {
 
     override suspend fun fetchAllCountries(): Response<List<CountryModel>> {
-        println("@@@ Country repo called")
         if (countryDao.areThereCountries() == 0) {
             try {
                 val countriesFromApi = holidayApi.getAvailableCountries()
 
                 insertCountriesToLocalDB(countriesDto = countriesFromApi)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load countries")
+                return Response.Error(errorMessage = R.string.could_not_load_countries)
             }
         }
 
@@ -58,7 +58,7 @@ class CountryRepositoryImpl @Inject constructor(
                     borders = countryInfoFromApi.borders
                 )
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load countries")
+                return Response.Error(errorMessage = R.string.could_not_load_countries)
             }
         }
 

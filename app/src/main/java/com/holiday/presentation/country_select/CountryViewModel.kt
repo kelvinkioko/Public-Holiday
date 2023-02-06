@@ -63,6 +63,6 @@ sealed class CountryUIState {
     ) : CountryUIState()
 
     data class Error(
-        val message: String = ""
+        val message: Any? = null
     ) : CountryUIState()
 }

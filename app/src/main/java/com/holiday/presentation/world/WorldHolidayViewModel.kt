@@ -67,6 +67,6 @@ sealed class WorldHolidayUIState {
     ) : WorldHolidayUIState()
 
     data class Error(
-        val message: String = ""
+        val message: Any? = null
     ) : WorldHolidayUIState()
 }

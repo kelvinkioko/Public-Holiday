@@ -10,6 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import com.holiday.R
 import com.holiday.databinding.FragmentWorldHolidayBinding
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.extension.observeState
@@ -86,7 +87,7 @@ class WorldHolidayFragment : Fragment() {
             holidaysList.isGone = isVisible
             emptyState.apply {
                 root.isVisible = isVisible
-                emptyMessage.text = "No holidays available."
+                emptyMessage.text = getString(R.string.no_holidays_available)
             }
         }
     }
