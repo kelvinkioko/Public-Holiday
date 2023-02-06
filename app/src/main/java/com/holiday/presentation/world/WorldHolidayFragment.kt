@@ -9,8 +9,10 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import com.holiday.databinding.FragmentWorldHolidayBinding
 import com.holiday.domain.model.HolidaysModel
+import com.holiday.extension.observeState
 import com.holiday.extension.setLottiePadding
 import com.holiday.extension.setNullableAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +47,7 @@ class WorldHolidayFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+        viewModel.uiState.observeState(this, Lifecycle.State.STARTED) { state ->
             when (state) {
                 is WorldHolidayUIState.Error -> {
                     setEmptyState()

@@ -1,13 +1,13 @@
 package com.holiday.presentation.world
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.domain.repository.HolidaysRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -17,8 +17,8 @@ class WorldHolidayViewModel @Inject constructor(
     private val holidaysRepository: HolidaysRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<WorldHolidayUIState>()
-    val uiState: LiveData<WorldHolidayUIState> = _uiState
+    private val _uiState = MutableStateFlow<WorldHolidayUIState>(WorldHolidayUIState.Loading())
+    val uiState = _uiState.asStateFlow()
 
     private val holidays = mutableListOf<HolidaysModel>()
 

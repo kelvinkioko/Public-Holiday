@@ -4,9 +4,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
-import com.holiday.data.local.dao.dummy.countryWideHolidays
-import com.holiday.data.local.dao.dummy.worldWideHolidays
 import com.holiday.data.local.database.HolidayDatabase
+import com.holiday.util.countryWideHolidays
+import com.holiday.util.worldWideHolidays
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

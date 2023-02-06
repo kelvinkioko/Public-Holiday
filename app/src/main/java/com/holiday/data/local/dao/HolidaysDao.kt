@@ -18,13 +18,13 @@ interface HolidaysDao {
         countryCode: String
     ): List<HolidaysEntity>
 
-    @Query("SELECT * FROM holidays WHERE worldWide =true")
+    @Query("SELECT * FROM holidays WHERE worldWide = 1")
     suspend fun loadWorldWideHolidays(): List<HolidaysEntity>
 
     @Query("SELECT COUNT(name) FROM holidays WHERE holidayYear =:year AND countryCode =:countryCode")
     suspend fun countHolidaysByYearAndCountryCode(year: Int, countryCode: String): Int
 
-    @Query("SELECT COUNT(name) FROM holidays WHERE worldWide =true")
+    @Query("SELECT COUNT(name) FROM holidays WHERE worldWide = 1")
     suspend fun countWorldWideHolidays(): Int
 
     @Delete
