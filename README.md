@@ -6,6 +6,12 @@
 
 **Public Holiday** *Create an app that uses the Public holidays API at https://date.nager.at/Api to display various pieces of data found there. The app's UI should showcase your ability to work with lists, and UI events and any Kotlin features you would like to showcase.*
 
+<p align="center">
+    <img src="https://github.com/kelvinkioko/Public-Holiday/blob/main/screenshots/public_holiday_one.png" width="200px" height="auto" />
+    <img src="https://github.com/kelvinkioko/Public-Holiday/blob/main/screenshots/public_holiday_two.png" width="200px" height="auto" hspace="10"/>
+    <img src="https://github.com/kelvinkioko/Public-Holiday/blob/main/screenshots/public_holiday_three.png" width="200px" height="auto"/>
+</p>
+
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more..
