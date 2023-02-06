@@ -1,15 +1,33 @@
 
 # Public Holiday
 
+[![Actions Status](https://github.com/kelvinkioko/Public-Holiday/workflows/Public%20Holiday%20CI/badge.svg)](https://github.com/kelvinkioko/Public-Holiday/actions)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.71-blue.svg)](http://kotlinlang.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 **Public Holiday** *Create an app that uses the Public holidays API at https://date.nager.at/Api to display various pieces of data found there. The app's UI should showcase your ability to work with lists, and UI events and any Kotlin features you would like to showcase.*
 
+## Walk through
+<p align="center">
+    <img src="recording/walk_through.gif" width="200px" height="auto" />
+</p>
+
+## Screenshots
 <p align="center">
     <img src="screenshots/public_holiday_one.jpg" width="200px" height="auto" />
     <img src="screenshots/public_holiday_two.jpg" width="200px" height="auto" hspace="10"/>
     <img src="screenshots/public_holiday_three.jpg" width="200px" height="auto"/>
+</p>
+
+<p align="center">
+    <img src="screenshots/public_holiday_four.jpg" width="200px" height="auto" />
+    <img src="screenshots/public_holiday_five.jpg" width="200px" height="auto" hspace="10"/>
+    <img src="screenshots/public_holiday_six.jpg" width="200px" height="auto"/>
+</p>
+
+<p align="center">
+    <img src="screenshots/public_holiday_seven.jpg" width="200px" height="auto" />
+    <img src="screenshots/public_holiday_eight.jpg" width="200px" height="auto" hspace="10"/>
 </p>
 
 ## Built With 🛠
