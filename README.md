@@ -92,7 +92,7 @@
 
 ## Automation
 ### Github Actions
-The public holiday project uses [Github Actions](https://github.com/kelvinkioko/Public-Holiday/workflows/) for continuous integration.
+The public holiday project uses [Github Actions](https://github.com/kelvinkioko/Public-Holiday/actions) for continuous integration.
 
 **Contributed By:** [Kelvin Kioko](https://github.com/kelvinkioko/)
 
