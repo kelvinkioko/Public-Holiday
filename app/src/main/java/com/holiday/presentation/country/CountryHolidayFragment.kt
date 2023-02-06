@@ -9,11 +9,13 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.holiday.databinding.FragmentCountryHolidayBinding
 import com.holiday.domain.model.CountryModel
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.domain.repository.HolidayPreferenceRepository
+import com.holiday.extension.observeState
 import com.holiday.extension.setNullableAdapter
 import com.holiday.presentation.country_select.CountryDialogFragment
 import com.holiday.presentation.year_picker.YearDialogFragment
@@ -100,7 +102,7 @@ class CountryHolidayFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+        viewModel.uiState.observeState(this, Lifecycle.State.STARTED) { state ->
             when (state) {
                 is CountryHolidayUIState.Error -> {
                     println("@@@ ${state.message}")
@@ -160,7 +162,7 @@ class CountryHolidayFragment : Fragment() {
     }
 
     private fun setInputListeners() {
-        binding.searchHolidayInput.editText?.doAfterTextChanged { searchQuery ->
+        binding.searchCountryHolidayInput.editText?.doAfterTextChanged { searchQuery ->
             if (searchQuery != null && searchQuery.isNotEmpty())
                 viewModel.filterHolidays(searchQuery = searchQuery.toString())
             else

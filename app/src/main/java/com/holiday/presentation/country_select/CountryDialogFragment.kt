@@ -11,10 +11,12 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.holiday.databinding.BottomSheetCountryBinding
 import com.holiday.domain.model.CountryModel
+import com.holiday.extension.observeState
 import com.holiday.extension.setLottiePadding
 import com.holiday.extension.setNullableAdapter
 import com.holiday.util.SHEET_HEIGHT
@@ -85,7 +87,7 @@ class CountryDialogFragment(
     }
 
     private fun setObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+        viewModel.uiState.observeState(this, Lifecycle.State.STARTED) { state ->
             when (state) {
                 is CountryUIState.Error -> {
                     println("@@@ ${state.message}")

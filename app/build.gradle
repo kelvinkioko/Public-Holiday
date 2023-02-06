@@ -48,6 +48,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -64,6 +68,8 @@ dependencies {
     def navigation_version = "2.5.3"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-android:0.11.1"
 
     // region: Room DB
     def room_version = "2.5.0"
@@ -93,6 +99,7 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
     // endregion
 
@@ -136,6 +143,8 @@ dependencies {
     def fragment_testing_version = "1.6.0-alpha04"
     debugImplementation "androidx.fragment:fragment-testing-manifest:$fragment_testing_version"
     androidTestImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
+
+    testImplementation 'app.cash.turbine:turbine:0.9.0'
 }
 
 kapt {

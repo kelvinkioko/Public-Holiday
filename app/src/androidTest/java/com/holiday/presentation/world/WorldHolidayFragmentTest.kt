@@ -1,16 +1,18 @@
 package com.holiday.presentation.world
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.holiday.R
 import com.holiday.launchFragmentInHiltContainer
+import com.holiday.util.EspressoUtils.withRecyclerView
 import com.holiday.util.ViewUtils
+import com.holiday.util.worldWideHolidaysModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -40,30 +42,37 @@ class WorldHolidayFragmentTest {
     fun verifyWorldWideHolidaysCopyIsAccurate() {
         launchFragmentInHiltContainer<WorldHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
 
-        val resources = ApplicationProvider.getApplicationContext<Context>().resources
-
         onView(withId(R.id.worldHeadline)).check(
-            matches(ViewMatchers.withText(R.string.world_wide_holidays))
+            matches(withText(R.string.world_wide_holidays))
         )
 
         onView(withId(R.id.worldDescription)).check(
-            matches(ViewMatchers.withText(R.string.world_wide_holiday_description))
+            matches(withText(R.string.world_wide_holiday_description))
         )
 
-//        onView(withId(R.id.searchHolidayInputValue)).check(
-//            matches(textInputMatcherWithHint(resources.getString(R.string.search_holiday)))
-//        )
+        onView(withId(R.id.searchHolidayInputValue))
+            .check(matches(ViewMatchers.withHint(R.string.search_holiday)))
 
         onView(withId(R.id.loaderGroup)).perform(ViewUtils.setVisibility(visible = true))
 
         onView(withId(R.id.loaderMessage)).check(
-            matches(ViewMatchers.withText(R.string.loading_world_holidays))
+            matches(withText(R.string.loading_world_holidays))
         )
     }
 
     @Test
     fun verifyWorldWideHolidaysShowSuccessfully() {
         launchFragmentInHiltContainer<WorldHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
+
+        Thread.sleep(5000L)
+
+        onView(withRecyclerView(R.id.holidaysList).atPosition(0)).check(
+            matches(
+                hasDescendant(
+                    withText(worldWideHolidaysModel[0].name)
+                )
+            )
+        )
     }
 
     @Test

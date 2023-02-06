@@ -11,7 +11,7 @@
         style="@style/HeadlineTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Public Holiday"
+        android:text="@string/public_holiday"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
@@ -46,7 +46,7 @@
         style="@style/MainTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Available holidays"
+        android:text="@string/available_holidays"
         android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="@id/guidelineStart"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchHolidayInput"
+        android:id="@+id/searchCountryHolidayInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:letterSpacing="0.07"
@@ -67,13 +67,14 @@
         app:layout_constraintStart_toStartOf="@id/guidelineStart" >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchCountryHolidayInputValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:letterSpacing="0.07"
             android:singleLine="true"
             android:padding="12dp"
-            android:hint="Search holiday..."
+            android:hint="@string/search_holiday"
             android:textAppearance="?attr/textAppearanceBody1"
             android:drawableEnd="@drawable/ic_search" />
 
@@ -87,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchHolidayInput"
+        app:layout_constraintTop_toBottomOf="@id/searchCountryHolidayInput"
         tools:itemCount="4"
         tools:listitem="@layout/item_holiday" />
 
@@ -114,13 +115,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="32dp"
-        android:text="Loading country holidays for 2023. Please wait ..."
+        android:text="@string/loading_country_holidays"
         android:gravity="center_horizontal"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/searchHolidayInput" />
+        app:layout_constraintTop_toBottomOf="@id/searchCountryHolidayInput" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/loaderGroup"

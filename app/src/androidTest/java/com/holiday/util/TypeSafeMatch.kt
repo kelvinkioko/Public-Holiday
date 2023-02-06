@@ -10,7 +10,7 @@ fun textInputMatcherWithHint(expectedHint: String): Matcher<View> =
     object : TypeSafeMatcher<View>() {
         override fun describeTo(description: Description?) { }
 
-        override fun matchesSafely(item: View?): Boolean {
+        override fun matchesSafely(item: View): Boolean {
             if (item !is TextInputLayout) return false
             val hint = item.hint ?: return false
             return expectedHint == hint.toString()

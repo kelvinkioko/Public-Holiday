@@ -2,6 +2,9 @@
     <string name="app_name">Public Holiday</string>
     <string name="world_wide_holidays">World wide holidays</string>
     <string name="world_wide_holiday_description">Public holidays for the next 7 days</string>
-    <string name="search_holiday">Search holiday...</string>
-    <string name="loading_world_holidays">Loading world holidays for the next 7 days. Please wait ...</string>
+    <string name="search_holiday">Search holiday…</string>
+    <string name="loading_world_holidays">Loading world holidays for the next 7 days. Please wait …</string>
+    <string name="public_holiday">Public Holiday</string>
+    <string name="available_holidays">Available holidays</string>
+    <string name="loading_country_holidays">Loading country holidays for 2023. Please wait ...</string>
 </resources>

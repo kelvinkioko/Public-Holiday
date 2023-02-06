@@ -1,13 +1,13 @@
 package com.holiday.presentation.country_select
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.holiday.domain.model.CountryModel
 import com.holiday.domain.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -17,8 +17,8 @@ class CountryViewModel @Inject constructor(
     private val countryRepository: CountryRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<CountryUIState>()
-    val uiState: LiveData<CountryUIState> = _uiState
+    private val _uiState = MutableStateFlow<CountryUIState>(CountryUIState.Loading())
+    val uiState = _uiState.asStateFlow()
 
     private val countries = mutableListOf<CountryModel>()
 

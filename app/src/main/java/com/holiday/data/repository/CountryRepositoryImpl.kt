@@ -26,6 +26,7 @@ class CountryRepositoryImpl @Inject constructor(
 ) : CountryRepository {
 
     override suspend fun fetchAllCountries(): Response<List<CountryModel>> {
+        println("@@@ Country repo called")
         if (countryDao.areThereCountries() == 0) {
             try {
                 val countriesFromApi = holidayApi.getAvailableCountries()
