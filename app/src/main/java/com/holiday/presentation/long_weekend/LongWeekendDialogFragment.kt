@@ -125,7 +125,7 @@ class LongWeekendDialogFragment(
             longWeekendList.isGone = isVisible
             emptyState.apply {
                 root.isVisible = isVisible
-                emptyMessage.text = "No countries available."
+                emptyMessage.text = "No long weekends available."
             }
         }
     }
