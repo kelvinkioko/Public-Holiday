@@ -83,6 +83,12 @@
      ktlint aims to enforce the official Kotlin coding conventions and Android Kotlin Style Guide
    - [lint](https://developer.android.com/studio/write/lint)
      Checks your Android project source files for potential bugs and optimization improvements for correctness, security, performance, usability, accessibility, and internationalization
+- [Testing]()
+   - [UI Testing]()
+     In [androidTest](app/src/androidTest/java/com/holiday/) you'll find a suite of UI tests that test different aspects of the fragments, and local cache
+   - [Unit Testing]()
+     In [test](app/src/test/java/com/holiday/) you'll find a suite of unit tests that tests multiple sections of the app such as ViewModels and data class mappers
+
 
 ## Automation
 ### Github Actions
