@@ -97,6 +97,15 @@ class CountryHolidayFragmentTest {
     }
 
     @Test
+    fun verifyLongWeekendDialogShows() {
+        launchFragmentInHiltContainer<CountryHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
+
+        onView(withId(R.id.longWeekendButton)).perform(click())
+
+        onView(withId(R.id.longHolidayParent)).check(matches(isDisplayed()))
+    }
+
+    @Test
     fun verifyWorldWideHolidaysShowSuccessfully() {
         launchFragmentInHiltContainer<CountryHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
 
