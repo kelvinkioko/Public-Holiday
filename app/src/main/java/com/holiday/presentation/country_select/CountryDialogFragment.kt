@@ -93,7 +93,7 @@ class CountryDialogFragment(
                 is CountryUIState.Error -> {
                     setEmptyState()
                 }
-                is CountryUIState.Country -> {
+                is CountryUIState.CountriesLoaded -> {
                     renderCountries(countries = state.countries)
                 }
                 is CountryUIState.Loading -> {

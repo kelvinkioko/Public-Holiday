@@ -53,7 +53,7 @@ class WorldHolidayFragment : Fragment() {
                 is WorldHolidayUIState.Error -> {
                     setEmptyState()
                 }
-                is WorldHolidayUIState.Holidays -> {
+                is WorldHolidayUIState.HolidaysLoaded -> {
                     renderPasswords(holidays = state.holidays)
                 }
                 is WorldHolidayUIState.Loading -> {

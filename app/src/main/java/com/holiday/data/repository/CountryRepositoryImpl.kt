@@ -4,10 +4,10 @@ import com.holiday.R
 import com.holiday.data.local.dao.BordersDao
 import com.holiday.data.local.dao.CountryDao
 import com.holiday.data.local.entity.CountryEntity
-import com.holiday.data.mapper.mapToBordersEntity
-import com.holiday.data.mapper.mapToBordersModel
-import com.holiday.data.mapper.mapToCountryEntity
-import com.holiday.data.mapper.mapToCountryModel
+import com.holiday.data.mapper.BordersMapper.Mapper.mapToBordersEntity
+import com.holiday.data.mapper.BordersMapper.Mapper.mapToBordersModel
+import com.holiday.data.mapper.CountryMapper.Mapper.mapToCountryEntity
+import com.holiday.data.mapper.CountryMapper.Mapper.mapToCountryModel
 import com.holiday.data.remote.PublicHolidayApi
 import com.holiday.data.remote.dto.BordersDto
 import com.holiday.data.remote.dto.CountryDto
@@ -27,7 +27,8 @@ class CountryRepositoryImpl @Inject constructor(
 ) : CountryRepository {
 
     override suspend fun fetchAllCountries(): Response<List<CountryModel>> {
-        if (countryDao.areThereCountries() == 0) {
+        val numberOfCountries = countryDao.countCountries()
+        if (numberOfCountries == 0) {
             try {
                 val countriesFromApi = holidayApi.getAvailableCountries()
 
@@ -42,7 +43,8 @@ class CountryRepositoryImpl @Inject constructor(
     }
 
     override suspend fun fetchCountryInformation(countryCode: String): Response<CountryModel> {
-        if (bordersDao.doesCountryCodeHaveBorderInfo(countryCode = countryCode) == 0) {
+        val numberOfBorders: Int = bordersDao.countCountryBorders(countryCode = countryCode)
+        if (numberOfBorders == 0) {
             try {
                 val countryInfoFromApi = holidayApi.getCountryInfo(countryCode = countryCode)
                 val countryEntity = CountryEntity(

@@ -54,8 +54,8 @@ class CountryHolidayViewModelTest {
         viewModel.uiState.test {
             assertThat(CountryHolidayUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
             assertThat(CountryHolidayUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
-            assertThat(CountryHolidayUIState.Holidays(holidays = countryWideHolidaysModel)).isEqualTo(awaitItem())
-            assertThat(CountryHolidayUIState.Country(countryModel = country)).isEqualTo(awaitItem())
+            assertThat(CountryHolidayUIState.HolidaysLoaded(holidays = countryWideHolidaysModel)).isEqualTo(awaitItem())
+            assertThat(CountryHolidayUIState.CountryLoaded(countryModel = country)).isEqualTo(awaitItem())
             cancel()
         }
     }

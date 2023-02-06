@@ -22,7 +22,7 @@ interface BordersDao {
             WHERE referenceCountryCode = :countryCode
         """
     )
-    suspend fun doesCountryCodeHaveBorderInfo(countryCode: String): Int
+    suspend fun countCountryBorders(countryCode: String): Int
 
     @Delete
     suspend fun deleteBorder(bordersEntity: BordersEntity)

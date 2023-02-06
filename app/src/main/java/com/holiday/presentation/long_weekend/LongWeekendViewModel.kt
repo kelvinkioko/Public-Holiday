@@ -36,7 +36,7 @@ class LongWeekendViewModel @Inject constructor(
             if (countriesResponse.responseData != null) {
                 weekends.clear()
                 weekends.addAll(countriesResponse.responseData)
-                _uiState.value = LongWeekendUIState.LongWeekend(weekends = weekends)
+                _uiState.value = LongWeekendUIState.LongWeekendsLoaded(weekends = weekends)
             } else {
                 _uiState.value = LongWeekendUIState.Error(
                     message = countriesResponse.errorMessage ?: ""
@@ -51,7 +51,7 @@ sealed class LongWeekendUIState {
         val isLoading: Boolean = false
     ) : LongWeekendUIState()
 
-    data class LongWeekend(
+    data class LongWeekendsLoaded(
         val weekends: List<LongWeekendModel> = emptyList()
     ) : LongWeekendUIState()
 

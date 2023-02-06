@@ -82,7 +82,7 @@ class CountryDaoTest {
             countryDao.insertCountry(countryEntity = country)
         }
 
-        val numberOfCountries = countryDao.areThereCountries()
+        val numberOfCountries = countryDao.countCountries()
 
         Truth.assertThat(numberOfCountries).isEqualTo(2)
     }
@@ -93,7 +93,7 @@ class CountryDaoTest {
             countryDao.insertCountry(countryEntity = country)
         }
 
-        val numberOfCountries = countryDao.doesCountryExistByCode(countryCode = countryCode)
+        val numberOfCountries = countryDao.countCountriesByCode(countryCode = countryCode)
 
         Truth.assertThat(numberOfCountries).isEqualTo(1)
     }
@@ -105,7 +105,7 @@ class CountryDaoTest {
         }
         countryDao.deleteCountry(countryEntity = countryOne)
 
-        val numberOfBorders = countryDao.doesCountryExistByCode(
+        val numberOfBorders = countryDao.countCountriesByCode(
             countryCode = countryCode
         )
 

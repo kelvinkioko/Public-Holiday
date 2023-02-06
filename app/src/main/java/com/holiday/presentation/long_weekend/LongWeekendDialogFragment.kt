@@ -91,7 +91,7 @@ class LongWeekendDialogFragment(
                 is LongWeekendUIState.Error -> {
                     setEmptyState()
                 }
-                is LongWeekendUIState.LongWeekend -> {
+                is LongWeekendUIState.LongWeekendsLoaded -> {
                     renderWeekends(weekends = state.weekends)
                 }
                 is LongWeekendUIState.Loading -> {

@@ -67,7 +67,7 @@ class BordersDaoTest {
     fun checkIfCountryHasBorders() = runBlocking {
         bordersDao.insertBorder(bordersEntity = bordersEntity)
 
-        val numberOfBorders = bordersDao.doesCountryCodeHaveBorderInfo(
+        val numberOfBorders = bordersDao.countCountryBorders(
             countryCode = countryCode
         )
 
@@ -79,7 +79,7 @@ class BordersDaoTest {
         bordersDao.insertBorder(bordersEntity = bordersEntity)
         bordersDao.deleteBorder(bordersEntity = bordersEntity)
 
-        val numberOfBorders = bordersDao.doesCountryCodeHaveBorderInfo(
+        val numberOfBorders = bordersDao.countCountryBorders(
             countryCode = countryCode
         )
 

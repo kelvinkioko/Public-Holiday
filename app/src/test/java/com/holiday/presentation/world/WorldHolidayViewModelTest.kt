@@ -43,7 +43,7 @@ class WorldHolidayViewModelTest {
         viewModel.uiState.test {
             Truth.assertThat(WorldHolidayUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
             Truth.assertThat(WorldHolidayUIState.Loading(isLoading = true)).isEqualTo(awaitItem())
-            Truth.assertThat(WorldHolidayUIState.Holidays(holidays = worldWideHolidaysModel)).isEqualTo(awaitItem())
+            Truth.assertThat(WorldHolidayUIState.HolidaysLoaded(holidays = worldWideHolidaysModel)).isEqualTo(awaitItem())
             cancel()
         }
     }

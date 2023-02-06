@@ -2,8 +2,8 @@ package com.holiday.data.repository
 
 import com.holiday.R
 import com.holiday.data.local.dao.HolidaysDao
-import com.holiday.data.mapper.mapToHolidaysEntity
-import com.holiday.data.mapper.mapToHolidaysModel
+import com.holiday.data.mapper.HolidayMapper.Mapper.mapToHolidaysEntity
+import com.holiday.data.mapper.HolidayMapper.Mapper.mapToHolidaysModel
 import com.holiday.data.remote.PublicHolidayApi
 import com.holiday.data.remote.dto.HolidaysDto
 import com.holiday.domain.model.HolidaysModel

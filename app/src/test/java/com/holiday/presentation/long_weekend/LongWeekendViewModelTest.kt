@@ -47,7 +47,7 @@ class LongWeekendViewModelTest {
         viewModel.uiState.test {
             Truth.assertThat(LongWeekendUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
             Truth.assertThat(LongWeekendUIState.Loading(isLoading = true)).isEqualTo(awaitItem())
-            Truth.assertThat(LongWeekendUIState.LongWeekend(weekends = longWeekendModel)).isEqualTo(awaitItem())
+            Truth.assertThat(LongWeekendUIState.LongWeekendsLoaded(weekends = longWeekendModel)).isEqualTo(awaitItem())
             cancel()
         }
     }

@@ -41,7 +41,7 @@ class CountryHolidayViewModel @Inject constructor(
 
                     if (response.responseData != null) {
                         withContext(Dispatchers.Main) {
-                            _uiState.value = CountryHolidayUIState.Country(
+                            _uiState.value = CountryHolidayUIState.CountryLoaded(
                                 countryModel = response.responseData
                             )
                         }
@@ -63,7 +63,7 @@ class CountryHolidayViewModel @Inject constructor(
             _uiState.value = if (holidaysResponse.responseData != null) {
                 holidays.clear()
                 holidays.addAll(holidaysResponse.responseData)
-                CountryHolidayUIState.Holidays(holidays = holidays)
+                CountryHolidayUIState.HolidaysLoaded(holidays = holidays)
             } else {
                 CountryHolidayUIState.Error(message = holidaysResponse.errorMessage ?: "")
             }
@@ -76,7 +76,7 @@ class CountryHolidayViewModel @Inject constructor(
                 it.localName.contains(searchQuery, ignoreCase = true)
         }
 
-        _uiState.value = CountryHolidayUIState.Holidays(
+        _uiState.value = CountryHolidayUIState.HolidaysLoaded(
             holidays = filteredHolidays
         )
     }
@@ -87,11 +87,11 @@ sealed class CountryHolidayUIState {
         val isLoading: Boolean = false
     ) : CountryHolidayUIState()
 
-    data class Country(
+    data class CountryLoaded(
         val countryModel: CountryModel
     ) : CountryHolidayUIState()
 
-    data class Holidays(
+    data class HolidaysLoaded(
         val holidays: List<HolidaysModel> = emptyList()
     ) : CountryHolidayUIState()
 

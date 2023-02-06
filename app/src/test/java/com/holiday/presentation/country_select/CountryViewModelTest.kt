@@ -43,7 +43,7 @@ class CountryViewModelTest {
         viewModel.uiState.test {
             assertThat(CountryUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
             assertThat(CountryUIState.Loading(isLoading = true)).isEqualTo(awaitItem())
-            assertThat(CountryUIState.Country(countries = countries)).isEqualTo(awaitItem())
+            assertThat(CountryUIState.CountriesLoaded(countries = countries)).isEqualTo(awaitItem())
             cancel()
         }
     }

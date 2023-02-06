@@ -1,6 +1,8 @@
 package com.holiday.data.mapper
 
 import com.holiday.data.local.entity.CountryEntity
+import com.holiday.data.mapper.CountryMapper.Mapper.mapToCountryEntity
+import com.holiday.data.mapper.CountryMapper.Mapper.mapToCountryModel
 import com.holiday.data.remote.dto.BordersDto
 import com.holiday.data.remote.dto.CountryDto
 import com.holiday.data.remote.dto.CountryInfoDto

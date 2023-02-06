@@ -19,10 +19,10 @@ interface CountryDao {
     suspend fun loadCountry(countryCode: String): CountryEntity
 
     @Query("SELECT COUNT(countryCode) FROM country")
-    suspend fun areThereCountries(): Int
+    suspend fun countCountries(): Int
 
     @Query("SELECT COUNT(countryCode) FROM country WHERE countryCode = :countryCode")
-    suspend fun doesCountryExistByCode(countryCode: String): Int
+    suspend fun countCountriesByCode(countryCode: String): Int
 
     @Delete
     suspend fun deleteCountry(countryEntity: CountryEntity)

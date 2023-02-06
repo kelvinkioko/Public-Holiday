@@ -1,5 +1,7 @@
 package com.holiday.data.mapper
 
+import com.holiday.data.mapper.LongWeekEndMapper.Mapper.mapToLongWeekEndEntity
+import com.holiday.data.mapper.LongWeekEndMapper.Mapper.mapToLongWeekEndModel
 import com.holiday.util.longWeekendDto
 import com.holiday.util.longWeekendEntity
 import com.holiday.util.longWeekendModel
