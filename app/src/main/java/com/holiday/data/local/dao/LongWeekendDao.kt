@@ -12,8 +12,18 @@ interface LongWeekendDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLongWeekend(longWeekendEntity: LongWeekendEntity)
 
-    @Query("SELECT * FROM long_weekend")
-    suspend fun loadLongWeekends(): List<LongWeekendEntity>
+    @Query("SELECT * FROM long_weekend WHERE year = :year AND countryCode = :countryCode")
+    suspend fun loadLongWeekends(year: Int, countryCode: String): List<LongWeekendEntity>
+
+    @Query(
+        """
+            SELECT COUNT(dayCount) 
+            FROM long_weekend 
+            WHERE year = :year
+            AND countryCode = :countryCode
+        """
+    )
+    suspend fun countLongWeekends(year: Int, countryCode: String): Int
 
     @Delete
     suspend fun deleteLongWeekend(longWeekendEntity: LongWeekendEntity)

@@ -35,4 +35,10 @@
         <item name="android:textAppearance">?attr/textAppearanceBody2</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="TextButtonAppearance" parent="Widget.Material3.Button.TextButton" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 </resources>

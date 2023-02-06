@@ -6,9 +6,11 @@ import androidx.datastore.preferences.core.Preferences
 import com.holiday.data.repository.CountryRepositoryImpl
 import com.holiday.data.repository.HolidayPreferenceRepositoryImpl
 import com.holiday.data.repository.HolidayRepositoryImpl
+import com.holiday.data.repository.LongWeekendRepositoryImpl
 import com.holiday.domain.repository.CountryRepository
 import com.holiday.domain.repository.HolidayPreferenceRepository
 import com.holiday.domain.repository.HolidaysRepository
+import com.holiday.domain.repository.LongWeekendRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,6 +40,12 @@ interface RepositoryModule {
     fun bindHolidayPreferenceRepository(
         holidayPreferenceRepositoryImpl: HolidayPreferenceRepositoryImpl
     ): HolidayPreferenceRepository
+
+    @Binds
+    @Singleton
+    fun bindLongWeekendRepository(
+        longWeekendRepositoryImpl: LongWeekendRepositoryImpl
+    ): LongWeekendRepository
 
     companion object {
         @Provides

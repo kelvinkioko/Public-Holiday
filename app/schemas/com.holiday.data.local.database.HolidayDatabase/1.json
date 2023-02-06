@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a38c08d5e348e2935ba7965a3ce6dd20",
+    "identityHash": "460941448033fa0211f6d9466178c01a",
     "entities": [
       {
         "tableName": "country",
@@ -170,7 +170,7 @@
       },
       {
         "tableName": "long_weekend",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`startDate` TEXT NOT NULL, `endDate` TEXT NOT NULL, `dayCount` TEXT NOT NULL, `needBridgeDay` TEXT NOT NULL, PRIMARY KEY(`startDate`, `endDate`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`startDate` TEXT NOT NULL, `endDate` TEXT NOT NULL, `dayCount` TEXT NOT NULL, `needBridgeDay` INTEGER NOT NULL, `year` INTEGER NOT NULL, `countryCode` TEXT NOT NULL, PRIMARY KEY(`startDate`, `endDate`))",
         "fields": [
           {
             "fieldPath": "startDate",
@@ -193,6 +193,18 @@
           {
             "fieldPath": "needBridgeDay",
             "columnName": "needBridgeDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -211,7 +223,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a38c08d5e348e2935ba7965a3ce6dd20')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '460941448033fa0211f6d9466178c01a')"
     ]
   }
 }
