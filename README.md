@@ -63,9 +63,9 @@
 - [Kotlin](https://kotlinlang.org/)
   The project is native android and has been developed with 95.9% kotlin
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
-    Coroutines were used to allow asynchronous request with the ability to manage the different threads available
-- [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/)
-    
+  Coroutines were used to allow asynchronous request with the ability to manage the different threads available
+- [Flow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)
+  Used stateFlow to facilitate state updated from the ViewModel and state observation and consumption on the fragment side
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) 
       View models have been used to stores UI-related data that isn't destroyed on UI changes and manage communication with the data layer through the domain
@@ -79,8 +79,8 @@
 - [Coding Guidelines]()
    - [Coding Style](https://developer.android.com/kotlin/style-guide)
      In the development process, there was a high emphasis on following the standard recommended coding structure guideline, naming conventions and resource management (Styling, themes, custom fonts and strings)
-   - ### Coding guideline enforcement tools 
    - [ktlint](https://github.com/pinterest/ktlint)
+     ktlint aims to enforce the official Kotlin coding conventions and Android Kotlin Style Guide
    - [lint](https://developer.android.com/studio/write/lint)
      Checks your Android project source files for potential bugs and optimization improvements for correctness, security, performance, usability, accessibility, and internationalization
 
