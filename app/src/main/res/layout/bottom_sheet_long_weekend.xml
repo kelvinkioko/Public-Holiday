@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:text="Long holidays" />
+        android:text="@string/long_weekend" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/longWeekendList"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="32dp"
-        android:text="Loading all countries. Please wait ..."
+        android:text="@string/loading_long_weekends"
         android:gravity="center_horizontal"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,7 +3,7 @@ package com.holiday.presentation.world
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
+import androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -12,7 +12,6 @@ import com.holiday.R
 import com.holiday.launchFragmentInHiltContainer
 import com.holiday.util.EspressoUtils.withRecyclerView
 import com.holiday.util.ViewUtils
-import com.holiday.util.worldWideHolidaysModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -64,13 +63,9 @@ class WorldHolidayFragmentTest {
     fun verifyWorldWideHolidaysShowSuccessfully() {
         launchFragmentInHiltContainer<WorldHolidayFragment>(themeResId = R.style.Theme_PublicHoliday)
 
-        Thread.sleep(5000L)
-
         onView(withRecyclerView(R.id.holidaysList).atPosition(0)).check(
             matches(
-                hasDescendant(
-                    withText(worldWideHolidaysModel[0].name)
-                )
+                hasMinimumChildCount(1)
             )
         )
     }

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.holiday.R
 import com.holiday.databinding.FragmentCountryHolidayBinding
 import com.holiday.domain.model.CountryModel
 import com.holiday.domain.model.HolidaysModel
@@ -64,8 +65,8 @@ class CountryHolidayFragment : Fragment() {
     private fun setupActions() {
         binding.apply {
             selectCountry.apply {
-                optionTitle.text = "Country"
-                selectedOption.text = countryModel?.commonName ?: "Select country"
+                optionTitle.text = getString(R.string.country)
+                selectedOption.text = countryModel?.commonName ?: getString(R.string.select_country)
                 root.setOnClickListener {
                     bottomSheet = CountryDialogFragment(
                         countryModel = countryModel,
@@ -83,7 +84,7 @@ class CountryHolidayFragment : Fragment() {
             }
 
             selectYear.apply {
-                optionTitle.text = "Year"
+                optionTitle.text = getString(R.string.year)
                 selectedOption.text = year.toString()
                 root.setOnClickListener {
                     bottomSheet = YearDialogFragment(
@@ -177,7 +178,7 @@ class CountryHolidayFragment : Fragment() {
             holidaysList.isGone = isVisible
             emptyState.apply {
                 root.isVisible = isVisible
-                emptyMessage.text = "No holidays available. Please change the country or year above"
+                emptyMessage.text = getString(R.string.no_country_holiday)
             }
         }
     }

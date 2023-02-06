@@ -56,6 +56,6 @@ sealed class LongWeekendUIState {
     ) : LongWeekendUIState()
 
     data class Error(
-        val message: String = ""
+        val message: Any? = null
     ) : LongWeekendUIState()
 }

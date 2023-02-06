@@ -21,7 +21,7 @@
             style="@style/TitleTextAppearance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Countries"
+            android:text="@string/countries"
             android:textSize="18sp"
             android:layout_gravity="center"/>
 
@@ -45,7 +45,7 @@
             android:letterSpacing="0.07"
             android:singleLine="true"
             android:padding="12dp"
-            android:hint="Search country..."
+            android:hint="@string/search_country"
             android:textAppearance="?attr/textAppearanceBody1"
             android:drawableEnd="@drawable/ic_search" />
 
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="32dp"
-        android:text="Loading all countries. Please wait ..."
+        android:text="@string/loading_all_countries"
         android:gravity="center_horizontal"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
