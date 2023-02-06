@@ -18,6 +18,7 @@ import com.holiday.domain.repository.HolidayPreferenceRepository
 import com.holiday.extension.observeState
 import com.holiday.extension.setNullableAdapter
 import com.holiday.presentation.country_select.CountryDialogFragment
+import com.holiday.presentation.long_weekend.LongWeekendDialogFragment
 import com.holiday.presentation.year_picker.YearDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
@@ -97,6 +98,14 @@ class CountryHolidayFragment : Fragment() {
                     )
                     bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
                 }
+            }
+
+            longWeekends.setOnClickListener {
+                bottomSheet = LongWeekendDialogFragment(
+                    year = this@CountryHolidayFragment.year,
+                    countryCode = this@CountryHolidayFragment.countryCode
+                )
+                bottomSheet?.show(parentFragmentManager, bottomSheet?.tag ?: "")
             }
         }
     }

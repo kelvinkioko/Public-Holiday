@@ -6,5 +6,5 @@ data class LongWeekendModel(
     val startDate: DateResource? = null,
     val endDate: DateResource? = null,
     val dayCount: String,
-    val needBridgeDay: String
+    val needBridgeDay: Boolean
 )
