@@ -41,13 +41,27 @@ class LongWeekendViewModelTest {
     }
 
     @Test
-    fun `load Countries return a list of all available countries`() = runTest {
+    fun `load long weekends`() = runTest {
         viewModel.loadLongWeekends(year = year, countryCode = countryCode)
 
         viewModel.uiState.test {
             Truth.assertThat(LongWeekendUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
             Truth.assertThat(LongWeekendUIState.Loading(isLoading = true)).isEqualTo(awaitItem())
             Truth.assertThat(LongWeekendUIState.LongWeekend(weekends = longWeekendModel)).isEqualTo(awaitItem())
+            cancel()
+        }
+    }
+
+    @Test
+    fun `return error response on long weekends load`() = runTest {
+        repository.returnError = true
+
+        viewModel.loadLongWeekends(year = year, countryCode = countryCode)
+
+        viewModel.uiState.test {
+            Truth.assertThat(LongWeekendUIState.Loading(isLoading = false)).isEqualTo(awaitItem())
+            Truth.assertThat(LongWeekendUIState.Loading(isLoading = true)).isEqualTo(awaitItem())
+            Truth.assertThat(LongWeekendUIState.Error(message = "Could not load long weekends")).isEqualTo(awaitItem())
             cancel()
         }
     }

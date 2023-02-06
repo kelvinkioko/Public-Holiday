@@ -32,11 +32,9 @@ class LongWeekendRepositoryImpl @Inject constructor(
                     countryCode = countryCode
                 )
 
-                println("@@@ $weekendsDto")
-
                 insertWeekendsToDB(year = year, countryCode = countryCode, weekendsDto = weekendsDto)
             } catch (httpException: HttpException) {
-                return Response.Error(errorMessage = "Could not load public holidays")
+                return Response.Error(errorMessage = "Could not load long weekends")
             }
         }
 
@@ -49,7 +47,6 @@ class LongWeekendRepositoryImpl @Inject constructor(
         countryCode: String,
         weekendsDto: List<LongWeekendDto>
     ) {
-        println("@@@ DTO $weekendsDto")
         weekendsDto.map { weekendDto ->
             val weekendEntity = weekendDto
                 .mapToLongWeekEndEntity(year = year, countryCode = countryCode)
@@ -63,15 +60,12 @@ class LongWeekendRepositoryImpl @Inject constructor(
     ): List<LongWeekendModel> {
         val weekends = longWeekendDao.loadLongWeekends(year = year, countryCode = countryCode)
 
-        println("@@@ entity $weekends")
-
         val longWeekendModel = mutableListOf<LongWeekendModel>()
         weekends.map { weekendEntity ->
             val weekendModel = weekendEntity.mapToLongWeekEndModel()
             longWeekendModel.add(weekendModel)
         }
 
-        println("@@@ Model $longWeekendModel")
         return longWeekendModel
     }
 }
