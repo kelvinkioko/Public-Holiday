@@ -117,10 +117,10 @@ class CountryHolidayFragment : Fragment() {
                 is CountryHolidayUIState.Error -> {
                     setEmptyState()
                 }
-                is CountryHolidayUIState.Holidays -> {
+                is CountryHolidayUIState.HolidaysLoaded -> {
                     renderHolidays(holidays = state.holidays)
                 }
-                is CountryHolidayUIState.Country -> {
+                is CountryHolidayUIState.CountryLoaded -> {
                     countryModel = state.countryModel
                     setupActions()
                 }

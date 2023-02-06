@@ -34,7 +34,7 @@ class WorldHolidayViewModel @Inject constructor(
             if (holidaysResponse.responseData != null) {
                 holidays.clear()
                 holidays.addAll(holidaysResponse.responseData)
-                _uiState.value = WorldHolidayUIState.Holidays(
+                _uiState.value = WorldHolidayUIState.HolidaysLoaded(
                     holidays = holidays
                 )
             } else {
@@ -51,7 +51,7 @@ class WorldHolidayViewModel @Inject constructor(
                 it.localName.contains(searchQuery, ignoreCase = true)
         }
 
-        _uiState.value = WorldHolidayUIState.Holidays(
+        _uiState.value = WorldHolidayUIState.HolidaysLoaded(
             holidays = filteredHolidays
         )
     }
@@ -62,7 +62,7 @@ sealed class WorldHolidayUIState {
         val isLoading: Boolean = false
     ) : WorldHolidayUIState()
 
-    data class Holidays(
+    data class HolidaysLoaded(
         val holidays: List<HolidaysModel> = emptyList()
     ) : WorldHolidayUIState()
 

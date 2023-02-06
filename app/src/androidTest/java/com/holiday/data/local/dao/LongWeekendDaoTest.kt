@@ -47,12 +47,12 @@ class LongWeekendDaoTest {
             longWeekendDao.insertLongWeekend(longWeekendEntity = longWeekend)
         }
 
-        val weekends = longWeekendDao.countLongWeekends(
+        val numberOfWeekends = longWeekendDao.countLongWeekends(
             year = 2015,
             countryCode = "AU"
         )
 
-        Truth.assertThat(weekends).isEqualTo(longWeekendEntity.size)
+        Truth.assertThat(numberOfWeekends).isEqualTo(longWeekendEntity.size)
     }
 
     @Test

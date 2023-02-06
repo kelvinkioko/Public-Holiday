@@ -33,7 +33,7 @@ class CountryViewModel @Inject constructor(
             if (countriesResponse.responseData != null) {
                 countries.clear()
                 countries.addAll(countriesResponse.responseData)
-                _uiState.value = CountryUIState.Country(countries = countries)
+                _uiState.value = CountryUIState.CountriesLoaded(countries = countries)
             } else {
                 _uiState.value = CountryUIState.Error(
                     message = countriesResponse.errorMessage ?: ""
@@ -49,7 +49,7 @@ class CountryViewModel @Inject constructor(
                 it.countryCode.contains(searchQuery, ignoreCase = true)
         }
 
-        _uiState.value = CountryUIState.Country(countries = filteredCountries)
+        _uiState.value = CountryUIState.CountriesLoaded(countries = filteredCountries)
     }
 }
 
@@ -58,7 +58,7 @@ sealed class CountryUIState {
         val isLoading: Boolean = false
     ) : CountryUIState()
 
-    data class Country(
+    data class CountriesLoaded(
         val countries: List<CountryModel> = emptyList()
     ) : CountryUIState()
 

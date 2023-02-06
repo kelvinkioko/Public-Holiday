@@ -2,8 +2,8 @@ package com.holiday.data.repository
 
 import com.holiday.R
 import com.holiday.data.local.dao.LongWeekendDao
-import com.holiday.data.mapper.mapToLongWeekEndEntity
-import com.holiday.data.mapper.mapToLongWeekEndModel
+import com.holiday.data.mapper.LongWeekEndMapper.Mapper.mapToLongWeekEndEntity
+import com.holiday.data.mapper.LongWeekEndMapper.Mapper.mapToLongWeekEndModel
 import com.holiday.data.remote.PublicHolidayApi
 import com.holiday.data.remote.dto.LongWeekendDto
 import com.holiday.domain.model.LongWeekendModel

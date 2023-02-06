@@ -1,6 +1,8 @@
 package com.holiday.data.mapper
 
 import com.holiday.data.local.entity.BordersEntity
+import com.holiday.data.mapper.BordersMapper.Mapper.mapToBordersEntity
+import com.holiday.data.mapper.BordersMapper.Mapper.mapToBordersModel
 import com.holiday.data.remote.dto.BordersDto
 import com.holiday.domain.model.BordersModel
 import org.junit.Assert.assertEquals

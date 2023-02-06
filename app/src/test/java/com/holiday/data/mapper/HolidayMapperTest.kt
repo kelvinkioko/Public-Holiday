@@ -1,6 +1,8 @@
 package com.holiday.data.mapper
 
 import com.holiday.data.local.entity.HolidaysEntity
+import com.holiday.data.mapper.HolidayMapper.Mapper.mapToHolidaysEntity
+import com.holiday.data.mapper.HolidayMapper.Mapper.mapToHolidaysModel
 import com.holiday.data.remote.dto.HolidaysDto
 import com.holiday.domain.model.HolidaysModel
 import com.holiday.extension.dateFormatter
